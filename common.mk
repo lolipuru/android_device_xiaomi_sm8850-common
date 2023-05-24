@@ -19,6 +19,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
+# Virtualization service
+$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
+
 # Call the proprietary setup.
 $(call inherit-product, vendor/xiaomi/sm8850-common/sm8850-common-vendor.mk)
 
