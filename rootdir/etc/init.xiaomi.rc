@@ -29,4 +29,6 @@ on post-fs-data
     mkdir /mnt/vendor/persist/fingerprint/meta 0770 system system
 
     chown system system /sys/class/xm_power/charger/wls_rev_charge/reverse_chg_mode
+    chown system system /sys/class/xm_power/charger/smart_charge/smart_night
     chmod 0660 /sys/class/xm_power/charger/wls_rev_charge/reverse_chg_mode
+    chmod 0660 /sys/class/xm_power/charger/smart_charge/smart_night
