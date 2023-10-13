@@ -30,6 +30,7 @@
 # Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
+import /vendor/etc/init/hw/init.logcat.rc
 import /vendor/etc/init/hw/init.qti.kernel.rc
 import /vendor/etc/init/hw/init.batterysecret.rc
 import /vendor/etc/init/hw/init.mi_thermald.rc

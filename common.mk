@@ -219,6 +219,7 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.target.rc \
     init.xiaomi.rc \
+    init.logcat.rc \
     ueventd.qcom.rc
 
 PRODUCT_COPY_FILES += \
