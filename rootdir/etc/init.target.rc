@@ -794,6 +794,8 @@ on post-fs && property:ro.product.device=shuntian
 
 on property:sys.boot_completed=1
     start ufs_ffu_service
+    # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
 
 # enable/disable pcie linkdown optimization
 on property:persist.vendor.pcie.linkdown.optimization=1
