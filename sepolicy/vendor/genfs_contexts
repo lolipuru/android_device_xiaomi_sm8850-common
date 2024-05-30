@@ -39,6 +39,10 @@ genfscon sysfs /devices/virtual/xm_power/wireless_master u:object_r:vendor_sysfs
 # Powerstats
 genfscon sysfs /devices/virtual/powercap/qpt u:object_r:vendor_sysfs_powerstats:s0
 
+# Sensors
+genfscon sysfs /devices/virtual/touch/touch_dev/gesture_single_tap_enabled u:object_r:vendor_sysfs_sensors:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/gesture_single_tap_state u:object_r:vendor_sysfs_sensors:s0
+
 # Touchfeature
 genfscon proc /tp_fw_version u:object_r:proc_tp_file:s0
 genfscon proc /tp_lockdown_info u:object_r:proc_tp_lockdown:s0
