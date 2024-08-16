@@ -32,6 +32,8 @@
 
 #define FOD_PRESS_STATUS_PATH "/sys/class/touch/touch_dev/fod_press_status"
 
+#define FINGERPRINT_ACQUIRED_VENDOR 6
+
 namespace {
 
 template <typename T>
@@ -79,15 +81,20 @@ class XiaomiSM8850UdfpsHander : public UdfpsHandler {
 
     void onAcquired(int32_t result, int32_t vendorCode) {
         LOG(INFO) << __func__ << " result: " << result << " vendorCode: " << vendorCode;
-        if (result == FINGERPRINT_ACQUIRED_GOOD) {
+        if (result != FINGERPRINT_ACQUIRED_VENDOR) {
             setFingerDown(false);
-            setFodStatus(FOD_STATUS_OFF);
+            if (result == FINGERPRINT_ACQUIRED_GOOD) setFodStatus(FOD_STATUS_OFF);
         } else if (vendorCode == 201 || vendorCode == 202) {
             /*
              * vendorCode = 201 waiting for fingerprint authentication
              * vendorCode = 202 waiting for fingerprint enroll
              */
             setFodStatus(FOD_STATUS_ON);
+        } else if (vendorCode == 44) {
+            /*
+             * vendorCode = 44 fingerprint scan failed
+             */
+            setFingerDown(false);
         }
     }
 
