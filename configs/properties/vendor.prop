@@ -137,6 +137,9 @@ persist.vendor.dpm.vndr.feature=1
 drm.service.enabled=true
 vendor.wv.oemcrypto.debug.enable_hlos_data_path=true
 
+# Fingerprint
+persist.vendor.fingerprint.type=udfps
+
 # FUSE
 persist.sys.fuse.passthrough.enable=true
 
