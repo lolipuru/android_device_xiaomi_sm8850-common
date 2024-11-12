@@ -194,6 +194,7 @@ debug.stagefright.c2inputsurface=-1
 
 # QCOM
 ro.soc.manufacturer=QTI
+ro.vendor.board.family=f-canoe
 
 # QCOMsysD
 persist.vendor.qcomsysd.enabled=1
