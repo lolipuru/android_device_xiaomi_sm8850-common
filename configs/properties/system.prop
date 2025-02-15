@@ -21,3 +21,7 @@ persist.vendor.ssr.enable_ramdumps=1
 # WiFi display
 persist.debug.wfd.enable=1
 persist.sys.wfd.virtual=0
+
+# RKPD
+remote_provisioning.enable_rkpd=true
+remote_provisioning.hostname=remoteprovisioning.googleapis.com
