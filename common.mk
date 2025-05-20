@@ -237,6 +237,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/power/config/canoe/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
+# PowerShare
+PRODUCT_PACKAGES += \
+    vendor.lineage.powershare-service.default
+
+$(call soong_config_set,lineage_powershare,powershare_path,/sys/class/xm_power/charger/wls_rev_charge/reverse_chg_mode)
+
 # QSPA
 PRODUCT_PACKAGES += \
     vendor.qti.qspa-service
