@@ -58,6 +58,7 @@ PRODUCT_PACKAGES += \
 
 # Rootdir
 PRODUCT_PACKAGES += \
+    charger_fstab.qcom \
     fstab.qcom \
     init.recovery.qcom.rc \
     init.qcom.rc \
