@@ -1,7 +1,6 @@
 type vendor_hal_fingerprint_service_xiaomi, hal_service_type, protected_service, service_manager_type;
 
 add_service(hal_fingerprint_default, vendor_hal_fingerprint_service_xiaomi)
-hal_client_domain(hal_fingerprint_default, vendor_hal_perf)
 
 get_prop(hal_fingerprint_default, vendor_panel_info_prop)
 set_prop(hal_fingerprint_default, vendor_fp_prop)
@@ -10,8 +9,6 @@ allow hal_fingerprint_default vendor_fingerprint_data_file:dir create_dir_perms;
 allow hal_fingerprint_default vendor_fingerprint_data_file:file create_file_perms;
 allow hal_fingerprint_default vendor_fingerprint_data_file_fpdump:dir create_dir_perms;
 allow hal_fingerprint_default vendor_fingerprint_data_file_fpdump:file create_file_perms;
-allow hal_fingerprint_default vendor_hal_perf_hwservice:hwservice_manager find;
-allow hal_fingerprint_default vendor_hal_perf_default:binder call;
 allow hal_fingerprint_default platform_app:binder { call transfer };
 allow hal_fingerprint_default platform_app:binder transfer;
 allow hal_fingerprint_default platform_app:fd *;
