@@ -1,6 +1,5 @@
 binder_call(hal_touchfeature_xiaomi_default, system_server)
 binder_use(hal_touchfeature_xiaomi_server)
-hal_client_domain(hal_touchfeature_xiaomi_default, vendor_hal_perf)
 hal_server_domain(hal_touchfeature_xiaomi_default, hal_touchfeature_xiaomi)
 init_daemon_domain(hal_touchfeature_xiaomi_default)
 unix_socket_connect(hal_touchfeature_xiaomi_default, property, touchreport)
@@ -41,9 +40,6 @@ allow hal_touchfeature_xiaomi_default touchreport_exec:file entrypoint;
 allow hal_touchfeature_xiaomi_default uhid_device:chr_file rw_file_perms;
 allow hal_touchfeature_xiaomi_default vendor_data_touchreport_file:dir { add_name read remove_name search watch write };
 allow hal_touchfeature_xiaomi_default vendor_data_touchreport_file:file { create getattr open read rename setattr unlink write };
-allow hal_touchfeature_xiaomi_default vendor_hal_perf_default:binder call;
-allow hal_touchfeature_xiaomi_default vendor_hal_perf_hwservice:hwservice_manager find;
-allow hal_touchfeature_xiaomi_default vendor_hal_perf2_service:service_manager find;
 allow hal_touchfeature_xiaomi_default vendor_touchfeature_prop:file { getattr open read };
 allow hal_touchfeature_xiaomi_server hal_touchfeature_xiaomi_client:binder transfer;
 allow hal_touchfeature_xiaomi_server hal_touchfeature_xiaomi_service:service_manager { add find };
