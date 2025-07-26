@@ -344,7 +344,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     alsd \
     android.hardware.sensors-service.xiaomi-multihal \
-    sensors.xiaomi.v2
+    sensors.xiaomi.v2 \
+    nonui-notifier
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/hals.conf:$(TARGET_COPY_OUT_ODM)/etc/sensors/hals.conf
