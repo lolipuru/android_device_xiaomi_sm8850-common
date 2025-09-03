@@ -1,0 +1,111 @@
+# Audio
+ro.vendor.audio.algorithm.support=Mi
+ro.vendor.audio.close.noise.reduction=true
+ro.vendor.audio.triplemic.support=true
+ro.vendor.audio.product.sleepmonitor.config=true
+ro.vendor.audio.lea.karaoke=true
+ro.vendor.audio.unsupported.typecacc=true
+ro.vendor.audio.voice.voip.holder.support=true
+ro.vendor.audio.zoom.support=true
+ro.vendor.audio.unite.record.type=1
+ro.vendor.audio.general.video.type=0,C,0,2,1,3
+ro.vendor.audio.meeting.mode=1
+ro.vendor.audio.meeting.mode.type=2
+ro.vendor.audio.denoiseutils=true
+ro.vendor.audio.soundtrigger.xiaomievent=1
+ro.vendor.audio.soundtrigger.permian=1
+ro.vendor.audio.soundtrigger.wakeupword=3
+ro.vendor.audio.soundtrigger.is_force_alarm_voiceassistant_deepbuffer=true
+ro.vendor.audio.soundtrigger.support_record_type=0x0022
+ro.vendor.audio.voiceassist.support_record_type=0x0022
+ro.vendor.audio.soundtrigger.sva-7.0=1
+ro.vendor.audio.mihc.version=2
+ro.vendor.audio.onlinesi.mute.support=1
+vendor.audio.cpu.sched=30
+vendor.audio.cpu.sched.cpuset.at=254
+vendor.audio.cpu.sched.cpuset.af=254
+vendor.audio.cpu.sched.cpuset.hb=254
+vendor.audio.cpu.sched.cpuset.hso=254
+vendor.audio.cpu.sched.cpuset.he=254
+vendor.audio.cpu.sched.cpus=8
+vendor.audio.cpu.sched.onlyfast=true
+vendor.audio.rt.mode=18
+vendor.audio.rt.mode.onlyfast=true
+
+# Camera
+debug.config.video.p3.encode.support=true
+debug.config.video.p3.decode.support=true
+
+# Display
+ro.vendor.display.ai_disp.enable=false
+ro.vendor.display.bl_lut_calib.enable=true
+ro.vendor.display.dobly_dpu.enable=true
+ro.vendor.display.dolbyvision.support=
+ro.vendor.display.framework_thermal_dimming=true
+ro.vendor.display.gallery_darkmode_dither.enable=true
+ro.vendor.display.hwc_set_backlight=1
+ro.vendor.display.mi_calib.enable=true
+ro.vendor.display.mode_change_optimize.enable=true
+ro.vendor.display.nature_mode.enable=true
+ro.vendor.display.sensortype=2
+ro.vendor.display.set_fps_stat_timer_ms=250
+ro.vendor.display.standard_d75_enable=true
+ro.vendor.display.support_qcom_dbi_count.enable=1
+ro.vendor.display.touch.idle.enable=true
+ro.vendor.display.type=oled
+ro.vendor.display.uiservice_bench.enable=true
+ro.vendor.display.uiservice_dbi.enable=true
+ro.vendor.display.uiservice_vhigh.enable=true
+ro.vendor.display.uiservice.enable=true
+ro.vendor.display.update_dbi_by_temperature=true
+ro.vendor.display.video_or_camera_fps.support=true
+ro.vendor.display.vivid_calibration.enable=1
+vendor.display.boost_cpu_layer_number_threshold=10
+vendor.display.disable_3d_adaptive_tm=1
+vendor.display.disable_cwb_call=0
+vendor.display.disable_sdr_dimming=0
+vendor.display.disable_stc_dimming=1
+vendor.display.enable_antiaging=1
+vendor.display.enable_demura=1
+vendor.display.enable_hdr10_gpu_target=0
+vendor.display.force_tonemapping=1
+vendor.display.support_function_timer=1
+vendor.display.use_layer_ext=0
+
+# Displayfeature
+ro.vendor.histogram.enable=true
+ro.vendor.sre.enable=true
+sys.displayfeature_hidl=false
+sys.displayfeature.entry.enable=true
+
+# DRM
+vendor.wv.oemcrypto.debug.enable_prov40=true
+
+# FW Detect
+ro.vendor.qti.va_odm.support=1
+
+# Graphics
+debug.sf.set_idle_timer_ms=1100
+
+# NFC
+ro.vendor.nfc.repair=1
+ro.vendor.nfc.dispatch_optim=2
+ro.vendor.nfc.disable.i2c=false
+ro.vendor.se.info=18-1010212
+ro.vendor.nfc.wallet_fusion=1
+ro.vendor.nfc.debounce_field_on=1
+ro.vendor.nfc.field_on_debounce=800
+
+# Radio
+ro.telephony.default_network=33,33
+
+# SSR
+persist.vendor.ssr.restart_level=ALL_ENABLE
+
+# Sensors
+persist.vendor.aes_whitebox.encrypt=true
+persist.vendor.debug.collision.dfx=true
+persist.vendor.sensor.mischeck=true
+
+# Partition
+ro.product.property_source_order=odm,vendor,product,system_ext,system
