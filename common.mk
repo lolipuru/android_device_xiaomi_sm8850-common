@@ -211,6 +211,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     CarrierConfigOverlayXiaomi \
     FrameworkResOverlayXiaomi \
+    NcmTetheringOverlay \
     SettingsOverlayXiaomi \
     SystemUIOverlayXiaomi \
     WifiOverlayXiaomi
