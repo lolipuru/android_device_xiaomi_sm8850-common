@@ -52,6 +52,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 
+# Hypsy
+PRODUCT_PACKAGES += \
+    xiaomi.system.hypsys.common-service
+
 # WiFi firmware symlinks
 PRODUCT_PACKAGES += \
     firmware_wlanmdsp.otaupdate_symlink \
