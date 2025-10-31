@@ -1,0 +1,9 @@
+type hal_hypsys_vendor, domain;
+type hal_hypsys_vendor_exec, exec_type, vendor_file_type, file_type;
+
+type hal_hypsys_vendor_service, hal_service_type, service_manager_type;
+
+binder_use(hal_hypsys_vendor)
+init_daemon_domain(hal_hypsys_vendor)
+
+allow hal_hypsys_vendor hal_hypsys_vendor_service:service_manager { add find };
