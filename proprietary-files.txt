@@ -145,7 +145,7 @@ vendor/lib64/libpal_net_if.so
 vendor/lib64/libpalclient.so
 vendor/lib64/libpaleventnotifier.so
 vendor/lib64/libqtigefar.so
-vendor/lib64/libtensorflowlite_c.so
+vendor/lib64/libtensorflowlite_c.so:vendor/lib64/libtensorflowlite_c_vendor.so;FIX_SONAME
 vendor/lib64/libtiantongpal.so
 vendor/lib64/libVoiceSdk.so
 vendor/lib64/libxlog.so
