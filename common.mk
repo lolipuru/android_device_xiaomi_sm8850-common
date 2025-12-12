@@ -62,6 +62,7 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     libalsautilsv2.vendor \
+    libaudioutils_shim \
     libmediautils_vendor.vendor \
     libqcompostprocbundle \
     libqcomvisualizer \

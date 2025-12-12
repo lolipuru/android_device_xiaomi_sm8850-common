@@ -123,6 +123,10 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/libkeymint_remote_prov_support-sm8850.so',
     ): blob_fixup()
         .replace_needed('libcppcose_rkp.so', 'libcppcose_rkp-sm8850.so'),
+    (
+        'vendor/lib64/libaudioserviceexampleimpl.so',
+    ): blob_fixup()
+        .add_needed('libaudioutils_shim.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
