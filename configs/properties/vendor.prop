@@ -195,6 +195,9 @@ vendor.gatekeeper.is_security_level_spu=0
 # Media
 debug.stagefright.c2inputsurface=-1
 
+# MTE
+ro.arm64.memtag.bootctl_supported=1
+
 # QCOM
 ro.soc.manufacturer=QTI
 ro.vendor.board.family=f-canoe

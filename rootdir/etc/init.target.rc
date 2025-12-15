@@ -36,7 +36,7 @@ import /vendor/etc/init/hw/init.mi_thermald.rc
 
 on early-init
     write /proc/sys/kernel/printk_devkmsg ratelimited
-    export MEMTAG_OPTIONS off
+
     export ADSP_LIBRARY_PATH /odm/lib/rfsa/adsp;/vendor/lib/rfsa/adsp/;/system/lib/rfsa/adsp;/system/vendor/lib/rfsa/adsp;/dsp
     # set tcp_mtu_probing to 1
     write /proc/sys/net/ipv4/tcp_mtu_probing 1
