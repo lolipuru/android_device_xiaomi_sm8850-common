@@ -112,3 +112,6 @@ genfscon sysfs /devices/platform/soc/soc:mca_strategy_wireless_revchg_class/wake
 genfscon sysfs /devices/platform/soc/soc:mi_t1_chip/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/soc:mi_t2_jtag/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,dsi-display-primary/wakeup u:object_r:sysfs_wakeup:s0
+
+# Walt
+genfscon proc /sys/walt u:object_r:proc_walt:s0

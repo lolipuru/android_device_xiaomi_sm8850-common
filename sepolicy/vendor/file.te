@@ -67,5 +67,8 @@ type sysfs_tp_virtual_prox, fs_type, sysfs_type;
 type touchreport_data_file, data_file_type, file_type;
 type vendor_data_touchreport_file, data_file_type, file_type;
 
+# Walt
+type proc_walt, fs_type, proc_type;
+
 # Wlan
 type vendor_mac_vendor_data_file, data_file_type, file_type, mlstrustedobject;
