@@ -56,6 +56,9 @@ PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 PRODUCT_PACKAGES += \
     xiaomi.system.hypsys.common-service
 
+# Partition
+PRODUCT_BUILD_PVMFW_IMAGE := true
+
 # Rootdir
 PRODUCT_PACKAGES += \
     charger_fstab.qcom \
