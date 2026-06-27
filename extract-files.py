@@ -37,7 +37,6 @@ lib_fixups: lib_fixups_user_type = {
     (
         'vendor.qti.ImsRtpService-V2-ndk',
         'vendor.qti.diaghal-V1-ndk',
-        'vendor.qti.hardware.wifidisplaysession_aidl-V1-ndk',
         'vendor.qti.qccsyshal_aidl-V1-ndk',
         'vendor.qti.qccvndhal_aidl-V1-ndk',
     ): lib_fixup_vendor_suffix,
