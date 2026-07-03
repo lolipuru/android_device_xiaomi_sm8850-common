@@ -82,7 +82,6 @@ vendor/etc/init/vendor.qti.adsprpc-guestos-service.rc
 vendor/lib64/libadsp_default_listener.so
 vendor/lib64/libadsprpc.so
 vendor/lib64/libloadalgo_stub.so
-vendor/lib64/libvmmem.so
 
 # AGM
 vendor/lib64/libagm.so
