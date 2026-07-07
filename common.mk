@@ -56,6 +56,17 @@ PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 PRODUCT_PACKAGES += \
     xiaomi.system.hypsys.common-service
 
+# Rootdir
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.recovery.qcom.rc \
+    init.qcom.rc \
+    init.target.rc \
+    ueventd.qcom.rc
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
+
 # WiFi firmware symlinks
 PRODUCT_PACKAGES += \
     firmware_wlanmdsp.otaupdate_symlink \
