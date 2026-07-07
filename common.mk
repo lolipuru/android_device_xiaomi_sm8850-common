@@ -54,11 +54,14 @@ PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 
 # Audio
 PRODUCT_PACKAGES += \
+    android.hardware.audio.core-V3-ndk.vendor \
+    android.hardware.audio.core.sounddose-V1-ndk.vendor \
+    android.hardware.audio.core.sounddose-V3-ndk.vendor \
+    android.media.audio.common.types-V4-ndk.vendor \
     audio.bluetooth.default \
     audio.r_submix.default \
     audio.usb.default \
     libalsautilsv2.vendor \
-    libbatterylistener \
     libmediautils_vendor.vendor \
     libqcompostprocbundle \
     libqcomvisualizer \
@@ -71,7 +74,8 @@ PRODUCT_PACKAGES += \
     libdynamicsprocessingaidl \
     libloudnessenhanceraidl \
     libreverbaidl \
-    libvisualizeraidl
+    libvisualizeraidl \
+    qti-audio-types-aidl-V1-ndk.vendor \
 
 AUDIO_HAL_DIR := hardware/qcom-caf/sm8850/audio/primary-hal/configs/canoe
 
