@@ -56,6 +56,16 @@ PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 PRODUCT_PACKAGES += \
     xiaomi.system.hypsys.common-service
 
+# Mountpoint
+$(call soong_config_set,rfs,mpss_firmware_symlink_target,modem_firmware)
+
+PRODUCT_PACKAGES += \
+    product_vm-system_mountpoint \
+    vendor_bt_firmware_mountpoint \
+    vendor_dsp_mountpoint \
+    vendor_firmware_mnt_mountpoint \
+    vendor_modem_firmware_mountpoint
+
 # Partition
 PRODUCT_BUILD_PVMFW_IMAGE := true
 
