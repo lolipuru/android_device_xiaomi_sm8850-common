@@ -1,0 +1,6 @@
+<manifest version="9.0" type="device" target-level="202504">
+    <hal format="aidl">
+        <name>vendor.qti.sla.service</name>
+        <fqname>ISlaAIDLService/default</fqname>
+    </hal>
+</manifest>

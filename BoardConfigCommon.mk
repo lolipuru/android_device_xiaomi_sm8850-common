@@ -151,6 +151,17 @@ BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
+# VINTF
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
+    $(COMMON_PATH)/configs/vintf/compatibility_matrix.device.xml \
+    $(COMMON_PATH)/configs/vintf/compatibility_matrix.xiaomi.xml \
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
+
+DEVICE_MANIFEST_SKUS := canoe
+DEVICE_MANIFEST_CANOE_FILES := \
+    $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml \
+    $(COMMON_PATH)/configs/vintf/manifest_canoe.xml
+
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211
