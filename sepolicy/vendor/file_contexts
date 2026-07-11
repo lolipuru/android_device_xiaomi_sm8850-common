@@ -3,3 +3,6 @@
 
 # Sensors
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors-service\.xiaomi-multihal     u:object_r:hal_sensors_default_exec:s0
+
+# UWB
+/(odm|vendor|system/vendor)/bin/hw/android\.hardware\.uwb@service-qti u:object_r:hal_uwb_default_exec:s0
