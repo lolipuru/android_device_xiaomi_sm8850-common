@@ -28,6 +28,13 @@
         </interface>
     </hal>
     <hal format="aidl" optional="true">
+        <name>vendor.xiaomi.hardware.aidl.intentaware</name>
+        <interface>
+            <name>IIntentAwareService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
         <name>vendor.xiaomi.hardware.aidl.mtdservice</name>
         <interface>
             <name>IMTService</name>
@@ -60,6 +67,21 @@
         <version>1.0</version>
         <interface>
             <name>IBGService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.xiaomi.hardware.camera.synthetic</name>
+        <interface>
+            <name>IVirtualCameraRegistrar</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.xiaomi.hardware.display.mihwcextension</name>
+        <version>2</version>
+        <interface>
+            <name>IMiHwcExtension</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -124,6 +146,17 @@
         <name>vendor.xiaomi.sensor.citsensorservice</name>
         <interface>
             <name>ICitSensorService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>xiaomi.system.hypsys.common</name>
+        <interface>
+            <name>IHypSysSsi</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IHypSysSsiIntl</name>
             <instance>default</instance>
         </interface>
     </hal>
