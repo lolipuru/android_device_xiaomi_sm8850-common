@@ -85,8 +85,15 @@ persist.vendor.qcom.bluetooth.fmd_header=8:02:01:06:18:16:AA:FE:40
 persist.vendor.qcom.bluetooth.lossless_aptx_adaptive_le.enabled=true
 persist.vendor.qcom.bluetooth.vsc_enabled=false
 
+# C2PA
+vendor.c2pa.service_start=1
+vendor.c2pa_listener.service.enabled=false
+vendor.c2pa_listener.service_start=1
+
 # Camera
-ro.camerax.extensions.enabled=false
+ro.camera.disableHeicUltraHDR=1
+ro.camera.enableCamera1MaxZsl=1
+ro.camerax.extensions.enabled=true
 
 # Display
 vendor.display.comp_mask=0
@@ -135,7 +142,9 @@ persist.vendor.dpm.vndr.feature=1
 
 # DRM
 drm.service.enabled=true
+vendor.wv.oemcrypto.debug.enable_external_display_check=false
 vendor.wv.oemcrypto.debug.enable_hlos_data_path=true
+vendor.wv.oemcrypto.debug.enable_prov40=true
 
 # Fingerprint
 persist.vendor.fingerprint.type=udfps
@@ -191,6 +200,7 @@ ro.crypto.metadata_init_delete_all_keys.enabled=true
 ro.hardware.keystore_desede=true
 vendor.gatekeeper.disable_spu=true
 vendor.gatekeeper.is_security_level_spu=0
+vendor.keymint.retry_timer=5
 
 # Media
 debug.stagefright.c2inputsurface=-1
@@ -217,6 +227,9 @@ persist.vendor.radio.sib16_support=1
 persist.vendor.rcs.singlereg.feature=1
 ro.com.android.dataroaming=true
 ro.vendor.radio.build_profile=miui
+
+# Secureprocessor
+vendor.secureprocessor.service_start=1
 
 # USB
 ro.recovery.usb.adb.pid=D001

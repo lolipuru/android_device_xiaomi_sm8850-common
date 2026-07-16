@@ -49,6 +49,12 @@ value:2916
 [AID_VENDOR_THALES_AUTHSECRET]
 value:2917
 
+[vendor/bin/hw/android.hardware.security.keymint3-service.strongbox.nxp]
+mode: 0755
+user: AID_VENDOR_NXP_STRONGBOX
+group: AID_SYSTEM
+caps: SYS_ADMIN SYS_NICE WAKE_ALARM
+
 [vendor/bin/hw/android.hardware.security.keymint4-service.strongbox-nxp-qti]
 mode: 0755
 user: AID_VENDOR_NXP_STRONGBOX
