@@ -1,2 +1,11 @@
 # Fingerprint
 persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0
+
+# Touchfeature
+persist.vendor.hostprocess.            u:object_r:vendor_touch_hostprocess_prop:s0
+persist.vendor.touchfeature.           u:object_r:vendor_touchfeature_prop:s0
+ro.vendor.touch.touchflinger.enable    u:object_r:vendor_touchfeature_prop:s0
+ro.vendor.touch.touchscheduler.enable  u:object_r:vendor_touchfeature_prop:s0
+ro.vendor.touchfeature.type            u:object_r:vendor_touchfeature_prop:s0
+vendor.panel.                          u:object_r:vendor_panel_info_prop:s0
+vendor.touchfeature.                   u:object_r:vendor_touchfeature_prop:s0

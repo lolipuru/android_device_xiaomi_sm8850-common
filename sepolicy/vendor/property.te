@@ -1,1 +1,6 @@
 vendor_public_prop(vendor_fp_prop)
+
+# Touchfeature
+vendor_restricted_prop(vendor_panel_info_prop)
+vendor_restricted_prop(vendor_touch_hostprocess_prop)
+vendor_restricted_prop(vendor_touchfeature_prop)

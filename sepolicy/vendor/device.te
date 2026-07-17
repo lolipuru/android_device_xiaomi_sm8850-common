@@ -1,0 +1,5 @@
+# Charge
+type vendor_charge_block_device, dev_type;
+
+# Touchfeature
+type touchfeature_device, dev_type;
