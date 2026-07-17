@@ -870,6 +870,8 @@ vendor/lib64/libOpenCL.so
 vendor/lib64/hw/vulkan.adreno.so
 
 # Graphics (firmware)
+odm/firmware/gen80000_zap.mbn
+odm/firmware/gen80200_zap.mbn
 vendor/firmware/gen80000_aqe.fw
 vendor/firmware/gen80000_gmu.bin
 vendor/firmware/gen80000_sqe.fw
