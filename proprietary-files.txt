@@ -1028,20 +1028,6 @@ vendor/etc/init/android.hardware.security.onekeymint-service-qti.rc
 vendor/etc/vintf/manifest/android.hardware.security.onekeymint-service-qti.xml
 vendor/etc/android.hardware.security.onekeymint-service-qti.rc
 
-# Keymint (nxp)
-odm/bin/hw/android.hardware.security.keymint3-service.strongbox.nxp
-odm/bin/hw/android.hardware.weaver-service.nxp-qti
-odm/etc/init/android.hardware.security.keymint3-service.strongbox.nxp.rc
-odm/etc/init/android.hardware.weaver-service.nxp.rc
-odm/etc/vintf/manifest/android.hardware.security.keymint3-service.strongbox.nxp.xml
-odm/etc/vintf/manifest/android.hardware.weaver-service.nxp.xml
-odm/lib64/ese_weaver.so
-odm/lib64/libjc_keymint_transport_nxp.so
-odm/lib64/libjc_keymint3.nxp.so
-odm/lib64/vendor.xiaomi.hardware.miauthsecretd-V1-ndk.so
-vendor/etc/hal_uuid_map_config.xml
-vendor/etc/hal_uuid_map_myron.xml
-
 # Listen
 vendor/lib64/libeai_fixed.so
 vendor/lib64/libeai_float.so
