@@ -106,7 +106,7 @@ ro.vendor.display.uiservice_snm.enable u:object_r:vendor_displayfeature_prop:s0
 ro.vendor.display.uiservice_tpidle_timer.enable u:object_r:vendor_displayfeature_prop:s0
 ro.vendor.display.uiservice_track.enable u:object_r:vendor_displayfeature_prop:s0
 ro.vendor.display.uiservice.enable u:object_r:vendor_displayfeature_prop:s0
-ro.vendor.display.ultimate.perf.supportu:object_r:vendor_displayfeature_prop:s0
+ro.vendor.display.ultimate.perf.support u:object_r:vendor_displayfeature_prop:s0
 ro.vendor.display.update_dbi_by_temperature u:object_r:vendor_displayfeature_prop:s0
 ro.vendor.display.update_gray_by_temperature u:object_r:vendor_displayfeature_prop:s0
 ro.vendor.display.video_or_camera_fps.support u:object_r:vendor_displayfeature_prop:s0
