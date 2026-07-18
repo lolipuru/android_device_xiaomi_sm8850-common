@@ -120,6 +120,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm-service.clearkey
+
 # Fastboot
 PRODUCT_PACKAGES += \
     android.hardware.fastboot-service.example_recovery \
@@ -161,6 +165,9 @@ PRODUCT_PACKAGES += \
     xiaomi.system.hypsys.common-service
 
 # IR
+PRODUCT_PACKAGES += \
+    android.hardware.ir-service.example
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/android.hardware.consumerir.xml
 
