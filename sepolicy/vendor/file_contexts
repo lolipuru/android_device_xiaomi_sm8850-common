@@ -8,8 +8,33 @@
 /dev/block/by-name/charger u:object_r:vendor_charge_block_device:s0
 /dev/block/platform/soc/1d84000.ufshc/by-name/modemfirmware_[ab] u:object_r:vendor_modem_block_device:s0
 
-# Charge
-/dev/smart_charge_cdev u:object_r:vendor_sysfs_xm_power:s0
+# Camera
+/(odm|vendor)/bin/hw/vendor\.qti\.camera\.provider-service_64 u:object_r:hal_camera_default_exec:s0
+/(odm|vendor/odm|vendor|system/vendor)/bin/hw/misensor_camera u:object_r:vendor_hal_misensor_camera_default_exec:s0
+/data/vendor/aon(/.*)? u:object_r:vendor_aon_vendor_data_file:s0
+/dev/camlog u:object_r:camlog_device:s0
+/mnt/vendor/persist/camera(/.*)? u:object_r:camera_persist_file:s0
+
+# CitSensor
+/(odm|vendor/odm|vendor|system/vendor)/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl u:object_r:vendor_hal_citsensorservice_xiaomi_default_exec:s0
+
+# Diag
+/data/vendor/bsplog(/.*)? u:object_r:vendor_bsp_data_log_file:s0
+/data/vendor/diag(/.*)? u:object_r:minidump_data_file:s0
+
+# Displayfeature
+/(vendor|system/vendor)/bin/displayfeature u:object_r:vendor_displayfeature_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.displayfeature_aidl-service u:object_r:vendor_hal_displayfeature_xiaomi_default_exec:s0
+/dev/mi_display/disp_feature u:object_r:vendor_displayfeature_device:s0
+/dev/mi_display/disp_log u:object_r:vendor_displaylog_device:s0
+/sys/devices/virtual/mi_display/disp_feature/disp-DSI-+[0-1](/.*)? u:object_r:vendor_sysfs_displayfeature:s0
+
+# Dumpstate
+/vendor/bin/hw/android\.hardware\.dumpstate-service.xiaomi u:object_r:hal_dumpstate_impl_exec:s0
+
+# Dolby
+/vendor/bin/hw/vendor\.dolby\.dms\.service u:object_r:hal_aidl_dms_default_exec:s0
+/vendor/bin/hw/vendor\.dolby\.media\.c2-default-service-dax u:object_r:mediacodec_exec:s0
 
 # Fingerprint
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.xiaomi              u:object_r:hal_fingerprint_default_exec:s0
@@ -17,11 +42,40 @@
 # HypSys
 /vendor/bin/hw/xiaomi\.system\.hypsys\.common-service    u:object_r:hal_hypsys_vendor_exec:s0
 
+# IR
+/dev/ir_spi u:object_r:ir_spi_device:s0
+
+# Metis/Migt
+/dev/metis u:object_r:migt_dev:s0
+/dev/migt u:object_r:migt_dev:s0
+/sys/module/metis/parameters(/.*)? u:object_r:sysfs_migt:s0
+
+# MliPay
+/(odm|vendor/odm|system/vendor)/bin/mlipayd u:object_r:hal_mlipay_default_exec:s0
+
 # NFC
 /(odm|vendor/odm)/bin/hw/android\.hardware\.nqnfc-service\.nxp               u:object_r:hal_nfc_default_exec:s0
 
 # Sensors
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors-service\.xiaomi-multihal     u:object_r:hal_sensors_default_exec:s0
+
+# SLA
+/data/vendor/sla(/.*)? u:object_r:sla_data_file:s0
+/dev/socket/slad u:object_r:slad_socket:s0
+/vendor/bin/slad u:object_r:slad_exec:s0
+/vendor/bin/hw/vendor\.qti\.sla\.service\@2\.0-service u:object_r:hal_slaaidlservice_default_exec:s0
+
+# Thermal
+/(vendor|system/vendor)/bin/mi_thermald u:object_r:mi_thermald_exec:s0
+/data/vendor/thermal(/.*)? u:object_r:thermal_data_file:s0
+/sys/class/power_debug/temp_aware u:object_r:sysfs_poweraware:s0
+/sys/class/thermal/thermal_message/flash_state u:object_r:sys_thermal_flash_state:s0
+/sys/class/thermal/thermal_message/torch_real_level u:object_r:sys_thermal_torch_real_level:s0
+/sys/class/thermal/thermal_message/wifi_limit u:object_r:sys_thermal_wifi_limit:s0
+/sys/devices/virtual/thermal/thermal_message/flash_state u:object_r:sys_thermal_flash_state:s0
+/sys/devices/virtual/thermal/thermal_message/torch_real_level u:object_r:sys_thermal_torch_real_level:s0
+/sys/devices/virtual/thermal/thermal_message/wifi_limit u:object_r:sys_thermal_wifi_limit:s0
+/sys/powersave(/.*)? u:object_r:sysfs_power_save:s0
 
 # Touch
 /(odm|vendor/odm|vendor|system/vendor)/bin/ear_sensor                   u:object_r:touchreport_exec:s0
@@ -59,3 +113,8 @@
 
 # UWB
 /(odm|vendor|system/vendor)/bin/hw/android\.hardware\.uwb@service-qti u:object_r:hal_uwb_default_exec:s0
+
+# WLAN
+/data/vendor/mac_addr(/.*)? u:object_r:vendor_mac_vendor_data_file:s0
+/data/vendor/mbnconfig(/.*)? u:object_r:vendor_firmware_data_file:s0
+/vendor/bin/nv_mac u:object_r:vendor_wcnss_service_exec:s0

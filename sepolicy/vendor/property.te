@@ -1,3 +1,10 @@
+# Audio
+system_vendor_config_prop(vendor_audio_cloud_ctrl_mi_prop)
+
+# Displayfeature
+vendor_public_prop(vendor_displayfeature_prop)
+
+# Fingerprint
 vendor_public_prop(vendor_fp_prop)
 
 # Touchfeature

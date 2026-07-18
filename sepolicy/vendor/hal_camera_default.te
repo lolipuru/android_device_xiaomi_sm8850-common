@@ -1,0 +1,38 @@
+type hal_aidlbgservice_service, hal_service_type, protected_service, service_manager_type;
+type hal_camera_aon_service, hal_service_type, protected_service, service_manager_type;
+type hal_dynamic_camera_service, hal_service_type, protected_service, service_manager_type;
+
+get_prop(hal_camera_default, bpf_progs_loaded_prop)
+set_prop(hal_camera, vendor_camera_sensor_prop)
+set_prop(hal_camera_default, vendor_camera_p3enable_prop)
+set_prop(hal_camera_default, vendor_camera_xdrversion_prop)
+
+r_dir_file(hal_camera_default, camera_persist_file)
+r_dir_file(hal_camera_default, mnt_vendor_file)
+
+allow hal_camera_client hal_aidlbgservice_service:service_manager find;
+allow hal_camera_client hal_camera_aon_service:service_manager find;
+allow hal_camera_client hal_dynamic_camera_service:service_manager find;
+allow hal_camera_client hal_quickcamera_service:service_manager find;
+allow hal_camera_default camera_persist_file:dir search;
+allow hal_camera_default camlog_device:chr_file { ioctl open read write };
+allow hal_camera_default hal_dynamic_camera_service:service_manager find;
+allow hal_camera_default migt_dev:chr_file rw_file_perms;
+allow hal_camera_default proc_pressure_mem:file { getattr open read write };
+allow hal_camera_default self:capability { fowner ipc_lock };
+allow hal_camera_default sys_thermal_flash_state:file { w_file_perms getattr };
+allow hal_camera_default sys_thermal_torch_real_level:file { w_file_perms getattr };
+allow hal_camera_default sysfs_csiphy_umd_paras:file { open read write };
+allow hal_camera_default sysfs_migt:dir search;
+allow hal_camera_default sysfs_migt:file { getattr open read write };
+allow hal_camera_default sysfs_poweraware:file { getattr open read };
+allow hal_camera_default vendor_bsp_data_log_file:dir { add_name create open read search write };
+allow hal_camera_default vendor_bsp_data_log_file:file { w_file_perms create getattr read setattr };
+allow hal_camera_default vendor_camera_data_file:sock_file { create getattr open read setattr unlink write };
+allow hal_camera_default vendor_displayfeature_device:chr_file { ioctl open read };
+allow hal_camera_server hal_aidlbgservice_service:service_manager { add find };
+allow hal_camera_server hal_camera_aon_service:service_manager { add find };
+allow hal_camera_server hal_dynamic_camera_service:service_manager { add find };
+allow hal_camera_server hal_quickcamera_service:service_manager { add find };
+allow hal_camera_server vendor_sysfs_xm_power:dir r_dir_perms;
+allow hal_camera_server vendor_sysfs_xm_power:file rw_file_perms;
