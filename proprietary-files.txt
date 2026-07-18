@@ -84,6 +84,9 @@ vendor/lib64/libadsprpc.so
 vendor/lib64/libloadalgo_stub.so
 
 # AGM
+vendor/lib64/libagm_compress_plugin.so
+vendor/lib64/libagm_mixer_plugin.so
+vendor/lib64/libagm_pcm_plugin.so
 vendor/lib64/libagm.so
 vendor/lib64/libagmclient.so
 vendor/lib64/libagmipcservice.so
@@ -97,15 +100,22 @@ odm/lib64/libtfacal.so
 odm/lib64/libwindns.so
 vendor/bin/hw/audiohalservice.qti
 vendor/etc/init/audiohalservice_qti.rc
+vendor/etc/models/acd/conv_detection.eai
 vendor/etc/models/acd/environment.eai
 vendor/etc/models/acd/event.eai
 vendor/etc/models/acd/music.eai
 vendor/etc/models/acd/speech.eai
+vendor/etc/models/mma/nvd_enpu_off.bin
+vendor/etc/models/mma/nvd_enpu_on.bin
+vendor/etc/models/mma/vad_enpu_off.bin
+vendor/etc/models/mma/vad_enpu_on.bin
 vendor/etc/vintf/manifest/audioeffectservice_qti.xml
 vendor/etc/vintf/manifest/manifest_audiocorehal_default.xml
 vendor/etc/vintf/manifest/Manifest_IAGM.xml
 vendor/etc/vintf/manifest/Manifest_IPAL.xml
 vendor/etc/vintf/manifest/soundtrigger.qti.xml
+vendor/lib64/customva_plugin.so
+vendor/lib64/hotword_plugin.so
 vendor/lib64/hw/libaudiocorehal.default.so
 vendor/lib64/hw/libaudiocorehal.qti.so;DISABLE_DEPS
 vendor/lib64/hw/libaudioeffecthal.qti.so
@@ -120,6 +130,7 @@ vendor/lib64/libarmemlog.so
 vendor/lib64/libats.so
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libaudiocloudctrl.so
+vendor/lib64/libaudiofeaturestats.so
 vendor/lib64/libaudioplatformconverter.qti.so
 vendor/lib64/libaudioserviceexampleimpl.so;DISABLE_DEPS
 vendor/lib64/libav_lvacfsencoder.so
@@ -130,6 +141,26 @@ vendor/lib64/libcapiv2svacnnvendor.so
 vendor/lib64/libcapiv2svarnnvendor.so
 vendor/lib64/libcapiv2udk7vendor.so
 vendor/lib64/libcapiv2uvvendor.so
+vendor/lib64/libdev_bt.so
+vendor/lib64/libdev_display.so
+vendor/lib64/libdev_dummy.so
+vendor/lib64/libdev_ec_ref.so
+vendor/lib64/libdev_ext_ec.so
+vendor/lib64/libdev_fm.so
+vendor/lib64/libdev_handset_mic.so
+vendor/lib64/libdev_handset_va.so
+vendor/lib64/libdev_handset.so
+vendor/lib64/libdev_haptics.so
+vendor/lib64/libdev_headphone.so
+vendor/lib64/libdev_headset_mic.so
+vendor/lib64/libdev_headset_va.so
+vendor/lib64/libdev_proxy.so
+vendor/lib64/libdev_speaker_mic.so
+vendor/lib64/libdev_speaker.so
+vendor/lib64/libdev_tiantongrx.so
+vendor/lib64/libdev_tiantongtx.so
+vendor/lib64/libdev_ultrasound.so
+vendor/lib64/libdev_usb.so
 vendor/lib64/libdlbpreg.so
 vendor/lib64/liblvacfs_wrapper.so
 vendor/lib64/liblx-ar_util.so
@@ -144,13 +175,42 @@ vendor/lib64/libmisoundfx_aosp_aidl_ext.so;SYMLINK=vendor/lib64/soundfx/libmisou
 vendor/lib64/libmisoundsa_multichannel.so
 vendor/lib64/libmisoundsa_sve.so
 vendor/lib64/libpal_net_if.so
+vendor/lib64/libpal_sounddose.so
 vendor/lib64/libpalclient.so
 vendor/lib64/libpaleventnotifier.so
+vendor/lib64/libqasr.so
 vendor/lib64/libqtigefar.so
+vendor/lib64/libsession_agm.so
+vendor/lib64/libsession_ar.so
+vendor/lib64/libsession_compress_config.so
+vendor/lib64/libsession_compress.so
+vendor/lib64/libsession_pcm_config.so
+vendor/lib64/libsession_pcm.so
+vendor/lib64/libsession_voice_config.so
+vendor/lib64/libsession_voice.so
+vendor/lib64/libsndcardparser.so
+vendor/lib64/libstream_acd.so
+vendor/lib64/libstream_asr.so
+vendor/lib64/libstream_calltranslation.so
+vendor/lib64/libstream_common.so
+vendor/lib64/libstream_commonproxy.so
+vendor/lib64/libstream_compress.so
+vendor/lib64/libstream_contextproxy.so
+vendor/lib64/libstream_dummy.so
+vendor/lib64/libstream_haptics.so
+vendor/lib64/libstream_incall.so
+vendor/lib64/libstream_nontunnel.so
+vendor/lib64/libstream_pcm.so
+vendor/lib64/libstream_sensorpcmdata.so
+vendor/lib64/libstream_sensorrenderer.so
+vendor/lib64/libstream_soundtrigger.so
+vendor/lib64/libstream_ultrasound.so
 vendor/lib64/libtensorflowlite_c.so:vendor/lib64/libtensorflowlite_c_vendor.so;FIX_SONAME
 vendor/lib64/libtiantongpal.so
 vendor/lib64/libVoiceSdk.so
+vendor/lib64/libvui_utils.so
 vendor/lib64/libxlog.so
+vendor/lib64/sva_plugin.so
 vendor/lib64/vendor.qti.hardware.pal-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.qasr-V3-ndk.so
 
@@ -174,12 +234,9 @@ vendor/etc/audio/sku_canoe/resourcemanager_canoe_cdp.xml
 vendor/etc/audio/sku_canoe/resourcemanager_canoe_mtp.xml
 vendor/etc/audio/sku_canoe/resourcemanager_canoe_qrd_wsa884x.xml
 vendor/etc/audio/sku_canoe/resourcemanager_canoe_qrd.xml
-vendor/etc/audio/vendor_audio_interfaces.xml:vendor/etc/vendor_audio_interfaces.xml
 vendor/etc/card-defs.xml
 vendor/etc/Hapticsconfig.xml
 vendor/etc/kvh2xml.xml
-vendor/etc/mem_logger_config.xml
-vendor/etc/microphone_characteristics.xml
 vendor/etc/usecaseKvManager.xml
 
 # Audio FX modules
@@ -1034,6 +1091,7 @@ vendor/etc/android.hardware.security.onekeymint-service-qti.rc
 vendor/lib64/libeai_fixed.so
 vendor/lib64/libeai_float.so
 vendor/lib64/liblistensoundmodel2vendor.so
+vendor/lib64/liblistensoundmodelaidl.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModelAidl-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModelAidl-V2-ndk.so
 
@@ -1054,6 +1112,9 @@ vendor/etc/media_canoe_sku2/video_system_specs.json
 vendor/etc/media_canoe_sku3/video_system_specs.json
 vendor/etc/media_canoe_v1/video_system_specs.json
 vendor/etc/media_canoe_v2/video_system_specs.json
+vendor/etc/media_codecs_c2_audio.xml
+vendor/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy
+vendor/etc/seccomp_policy/c2audio.vendor.base-arm64.policy
 vendor/etc/media_codecs_canoe_sku1_vendor.xml
 vendor/etc/media_codecs_canoe_sku1.xml
 vendor/etc/media_codecs_canoe_sku2_vendor.xml
