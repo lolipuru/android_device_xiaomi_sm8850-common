@@ -1,6 +1,9 @@
 # Audio
 type audio_socket, file_type;
 
+# Charger
+type vendor_sysfs_xm_power, fs_type, sysfs_type;
+
 # Fingerprint
 type sysfs_tp_fodstatus, fs_type, sysfs_type;
 

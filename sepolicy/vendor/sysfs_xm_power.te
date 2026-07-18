@@ -1,0 +1,1 @@
+allow vendor_sysfs_xm_power tmpfs:filesystem associate;

@@ -1,0 +1,2 @@
+allow vendor_hal_usb_qti vendor_sysfs_xm_power:dir search;
+allow vendor_hal_usb_qti vendor_sysfs_xm_power:file rw_file_perms;

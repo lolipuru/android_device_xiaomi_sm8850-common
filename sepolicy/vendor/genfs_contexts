@@ -1,3 +1,22 @@
+# MCA
+genfscon sysfs /devices/platform/soc/soc:mca_bmd u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_business_charger u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_charge_interface u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_strategy_basic_wireless_class u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_strategy_pd_auth u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_strategy_quick_charge u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_strategy_wireless_revchg_class u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:strategy-fg u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/charge_log u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/charge_pump u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/charger u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/fuelgauge u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/hw_monitor/ u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/mca_event u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/typec u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/wireless_master u:object_r:vendor_sysfs_xm_power:s0
+
 # Touchfeature
 genfscon proc /tp_fw_version u:object_r:proc_tp_file:s0
 genfscon proc /tp_lockdown_info u:object_r:proc_tp_lockdown:s0

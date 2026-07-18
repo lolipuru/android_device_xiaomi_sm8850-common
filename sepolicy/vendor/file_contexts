@@ -1,9 +1,15 @@
 # Audio
 /dev/socket/audio_holder_socket_0 u:object_r:audio_socket:s0
 
+# Battery
+/(vendor|system/vendor)/bin/batterysecret u:object_r:batterysecret_exec:s0
+
 # Block devices
 /dev/block/by-name/charger u:object_r:vendor_charge_block_device:s0
 /dev/block/platform/soc/1d84000.ufshc/by-name/modemfirmware_[ab] u:object_r:vendor_modem_block_device:s0
+
+# Charge
+/dev/smart_charge_cdev u:object_r:vendor_sysfs_xm_power:s0
 
 # Fingerprint
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.xiaomi              u:object_r:hal_fingerprint_default_exec:s0
