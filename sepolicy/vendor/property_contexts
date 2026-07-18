@@ -204,7 +204,6 @@ persist.vendor.sys.provision.status      u:object_r:vendor_payment_security_prop
 persist.vendor.sys.rkp.status                  u:object_r:vendor_payment_security_prop:s0
 persist.vendor.sys.strongbox_upgrade.status    u:object_r:vendor_payment_security_prop:s0
 persist.vendor.sys.wv_rkp.status               u:object_r:vendor_payment_security_prop:s0
-ro.boot.cpuid                            u:object_r:vendor_cpuid_prop:s0
 ro.vendor.idmgr.initialized                       u:object_r:vendor_payment_security_prop:s0
 vendor.sys.feature_state                 u:object_r:vendor_payment_security_prop:s0
 vendor.sys.rpmb_state                    u:object_r:vendor_payment_security_prop:s0

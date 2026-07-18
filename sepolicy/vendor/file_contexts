@@ -56,6 +56,9 @@
 # NFC
 /(odm|vendor/odm)/bin/hw/android\.hardware\.nqnfc-service\.nxp               u:object_r:hal_nfc_default_exec:s0
 
+# Perf
+/sys/kernel/reserve_pool(/.*)? u:object_r:sysfs_perf:s0
+
 # Sensors
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors-service\.xiaomi-multihal     u:object_r:hal_sensors_default_exec:s0
 
