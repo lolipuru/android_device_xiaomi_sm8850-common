@@ -76,6 +76,12 @@ subsystem mem_buf_vm
     devname uevent_devpath
     dirname /dev/mem_buf_vm
 
+# MIUI ADD: Adapt_MIUIAdaptFrame
+subsystem mi_display
+    devname uevent_devpath
+    dirname /dev/mi_display
+# END Adapt_MIUIAdaptFrame
+
 # the DIAG device node is not world writable/readable.
 /dev/diag                 0660   system     oem_2901
 /dev/mhi_*_pipe_4         0660   system     system
@@ -665,3 +671,7 @@ subsystem mem_buf_vm
 /sys/devices/virtual/powercap/qpt/qpt\:*/*    name                  0440    root system
 /sys/devices/virtual/powercap/qpt/qpt\:*/*    energy_uj             0440    root system
 /sys/devices/virtual/powercap/qpt/qpt\:*/*    power_uw              0440    root system
+
+# MIUI ADD: Adapt_MIUIAdaptFrame
+/dev/mi_display/*         0666   root       graphics
+# END Adapt_MIUIAdaptFrame
