@@ -1,0 +1,25 @@
+type hal_slaaidlservice_default, domain;
+type hal_slaaidlservice_default_exec, exec_type, file_type, vendor_file_type;
+type hal_slaaidlservice_service, hal_service_type, protected_service, service_manager_type;
+
+allow hal_slaaidlservice_client hal_slaaidlservice_server:binder { call transfer };
+allow hal_slaaidlservice_client hal_slaaidlservice_server:binder transfer;
+allow hal_slaaidlservice_client hal_slaaidlservice_server:fd *;
+allow hal_slaaidlservice_client hal_slaaidlservice_service:service_manager find;
+allow hal_slaaidlservice_server hal_slaaidlservice_client:binder transfer;
+allow hal_slaaidlservice_server hal_slaaidlservice_client:binder { call transfer };
+allow hal_slaaidlservice_server hal_slaaidlservice_client:fd *;
+allow hal_slaaidlservice_server servicemanager:fd *;
+allow hal_slaaidlservice_server hal_slaaidlservice_service:service_manager { add find };
+allow hal_slaaidlservice_default sysfs:file { open read write };
+allow hal_slaaidlservice_default hal_slaaidlservice_service:service_manager add;
+allow hal_slaaidlservice_default vendor_slad_prop:file read;
+allow hal_slaaidlservice_default socket_device:sock_file write;
+init_daemon_domain(hal_slaaidlservice_default)
+unix_socket_connect(hal_slaaidlservice_default, property, slad)
+unix_socket_connect(hal_slaaidlservice_default, slad, init)
+unix_socket_connect(hal_slaaidlservice_default, slad, slad)
+set_prop(hal_slaaidlservice_default, vendor_slad_prop)
+binder_use(hal_slaaidlservice_server)
+binder_use(hal_slaaidlservice_default)
+hal_server_domain(hal_slaaidlservice_default, hal_slaaidlservice)

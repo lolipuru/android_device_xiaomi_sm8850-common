@@ -1,0 +1,16 @@
+type vendor_touch_init_shell, domain;
+type vendor_touch_init_shell_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(vendor_touch_init_shell)
+
+set_prop(vendor_touch_init_shell, vendor_panel_info_prop)
+set_prop(vendor_touch_init_shell, vendor_touchfeature_prop)
+
+allow vendor_touch_init_shell kernel:system syslog_read;
+allow vendor_touch_init_shell kmsg_device:chr_file { open read };
+allow vendor_touch_init_shell sysfs:file r_file_perms;
+allow vendor_touch_init_shell vendor_data_touchreport_file:dir { add_name create getattr read remove_name search watch write };
+allow vendor_touch_init_shell vendor_data_touchreport_file:file { w_file_perms create getattr read rename setattr unlink };
+allow vendor_touch_init_shell vendor_shell_exec:file { entrypoint rx_file_perms };
+allow vendor_touch_init_shell vendor_toolbox_exec:file rx_file_perms;
+allow vendor_touch_init_shell vendor_touch_init_shell_exec:file { entrypoint rx_file_perms };

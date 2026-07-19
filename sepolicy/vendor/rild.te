@@ -1,0 +1,4 @@
+get_prop(rild, vendor_miui_region_prop)
+get_prop(rild, vendor_miui_singlesim_prop)
+set_prop(rild, vendor_deviceid_prop)
+set_prop(rild, vendor_sno_prop)

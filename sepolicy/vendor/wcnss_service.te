@@ -1,0 +1,8 @@
+get_prop(vendor_wcnss_service, vendor_radio_prop)
+
+allow vendor_wcnss_service mnt_vendor_file:dir { add_name create read search write };
+allow vendor_wcnss_service mnt_vendor_file:file { create open read setattr write };
+allow vendor_wcnss_service vendor_data_file:dir { w_dir_perms getattr read setattr };
+allow vendor_wcnss_service vendor_data_file:file { w_file_perms create getattr read rename setattr unlink };
+allow vendor_wcnss_service vendor_mac_vendor_data_file:dir { rw_dir_perms setattr };
+allow vendor_wcnss_service vendor_mac_vendor_data_file:file { create getattr open read setattr write };

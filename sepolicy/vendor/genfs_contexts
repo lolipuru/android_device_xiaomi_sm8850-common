@@ -1,0 +1,95 @@
+# Battery
+genfscon sysfs /devices/platform/soc/soc:mca_business_battery/power_supply/battery u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/soc:mca_business_charger/power_supply/wireless u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/soc:smart_charge u:object_r:vendor_sysfs_qcom_battery:s0
+genfscon sysfs /class/qcom-battery u:object_r:vendor_sysfs_qcom_battery:s0
+
+# Camera
+genfscon sysfs /csiphy_umd_paras/csiphy_umd_paras u:object_r:sysfs_csiphy_umd_paras:s0
+genfscon sysfs /module/camera/parameters/xm_cam_dev_probe_skip_camera_id u:object_r:vendor_sysfs_camera_xiaomi:s0
+genfscon sysfs /module/camera/parameters/xm_cam_dev_probe_damaged_camera_id u:object_r:vendor_sysfs_camera_xiaomi:s0
+genfscon sysfs /module/camera/parameters/xm_cam_dev_probe_skip_switch u:object_r:vendor_sysfs_camera_xiaomi:s0
+
+# Graphics
+genfscon sysfs /devices/platform/soc/88e0000.qcom,msm-eud/extcon/extcon2/cable.1 u:object_r:vendor_sysfs_graphics:s0
+
+# Info 
+genfscon sysfs /kernel/hardware_info_to_dump/hardw_info u:object_r:vendor_sysfs_hardwareinfo:s0
+
+# MCA
+genfscon sysfs /devices/platform/soc/soc:mca_bmd u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_business_charger u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_charge_interface u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_strategy_basic_wireless_class u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_strategy_pd_auth u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_strategy_quick_charge u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:mca_strategy_wireless_revchg_class u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/platform/soc/soc:strategy-fg u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/charge_log u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/charge_pump u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/charger u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/fuelgauge u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/hw_monitor/ u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/mca_event u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/typec u:object_r:vendor_sysfs_xm_power:s0
+genfscon sysfs /devices/virtual/xm_power/wireless_master u:object_r:vendor_sysfs_xm_power:s0
+
+# Touchfeature
+genfscon proc /tp_fw_version u:object_r:proc_tp_file:s0
+genfscon proc /tp_lockdown_info u:object_r:proc_tp_lockdown:s0
+genfscon proc /tp_lockdown_info_1 u:object_r:proc_tp_lockdown:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/abnormal_event u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/clicktouch_raw u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/ear_sensor u:object_r:sysfs_tp_virtual_prox:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/ear_sensor_data u:object_r:sysfs_tp_virtual_prox:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/enable_touch_delta u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/enable_touch_raw u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/hold_sensor u:object_r:sysfs_tp_virtual_prox:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/palm_sensor u:object_r:sysfs_tp_virtual_prox:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/palm_sensor_data u:object_r:sysfs_tp_virtual_prox:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/suspend_state u:object_r:sysfs_touch_suspend:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_active_status u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_doze_analysis u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_finger_status u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_ic_buffer u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_irq_no u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_sensor_ctrl u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_cmd u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_cmd_ready u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_downthd u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_dump u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_dump_data u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_ic_cmd u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_ic_cmd_data u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_islandthd u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_mem_notify u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_movethd u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_noisefilter u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_preset_point u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_rx_num u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_smooth u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_testmode u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_testresult u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_tx_num u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_upthd u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_x_resolution u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/touch_thp_y_resolution u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs /devices/virtual/touch/touch_dev/update_rawdata u:object_r:sysfs_touch_hostprocess:s0
+
+# Wakeup
+genfscon sysfs /devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/88c000.i2c/i2c-11/11-0055/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/88c000.i2c/i2c-11/11-006f/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a90000.spi/spi_master/spi4/spi4.0/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a94000.i2c/i2c-5/5-006b/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-00/c42d000.qcom,spmi:qcom,pmk8550@0:pon_hlos@1300/c42d000.qcom,spmi:qcom,pmk8550@0:pon_hlos@1300:pwrkey-bark/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-00/c42d000.qcom,spmi:qcom,pmk8550@0:pon_hlos@1300/c42d000.qcom,spmi:qcom,pmk8550@0:pon_hlos@1300:pwrkey-resin-bark/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:xiaomi_fingerprint/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:mca_business_battery/power_supply/battery/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:mca_qcom_subpmic_proxy/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:mca_business_charger/power_supply/usb/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:mca_business_charger/power_supply/wireless/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:mca_business_charger/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:mi_t1_chip/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:mi_t2_jtag/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:qcom,dsi-display-primary/wakeup u:object_r:sysfs_wakeup:s0
