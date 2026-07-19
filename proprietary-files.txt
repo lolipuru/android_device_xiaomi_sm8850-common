@@ -215,6 +215,11 @@ vendor/lib64/sva_plugin.so
 vendor/lib64/vendor.qti.hardware.pal-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.qasr-V3-ndk.so
 
+# Audio manifest - from CPH2767_16.0.9.401
+vendor/etc/vintf/manifest/Manifest_IListenSoundModel.xml|6d18b45696122cc62a750a139001b6bb05dfdb02
+vendor/etc/vintf/manifest/Manifest_IPALEventNotifier.xml|34a41ecbee2eb27dd588fa5f5638d0ff6cc53ab2
+vendor/etc/vintf/manifest/qasr_vintf.xml|c7c183d5deadec39de1f20a64bef630bbbbfe458
+
 # Audio Config
 odm/etc/audio/sku_canoe/adsp_sleep_monitor.conf
 odm/etc/backend_conf.xml
