@@ -62,6 +62,7 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     libalsautilsv2.vendor \
+    libaudio_aidl_conversion_common_ndk.vendor \
     libaudioutils_shim \
     libbluetooth_audio_session_aidl_shim \
     libmediautils_vendor.vendor \

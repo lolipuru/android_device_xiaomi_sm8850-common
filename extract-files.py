@@ -126,6 +126,7 @@ blob_fixups: blob_fixups_user_type = {
     (
         'vendor/lib64/libaudioserviceexampleimpl.so',
     ): blob_fixup()
+        .replace_needed('libaudio_aidl_conversion_common_ndk.so', 'libaudio_aidl_conversion_common_ndk-sm8850.so')
         .add_needed('libaudioutils_shim.so')
         .add_needed('libbluetooth_audio_session_aidl_shim.so'),
 }  # fmt: skip

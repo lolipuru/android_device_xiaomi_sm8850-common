@@ -128,6 +128,7 @@ vendor/lib64/libar-gsl.so
 vendor/lib64/libar-pal.so
 vendor/lib64/libarmemlog.so
 vendor/lib64/libats.so
+vendor/lib64/libaudio_aidl_conversion_common_ndk.so:vendor/lib64/libaudio_aidl_conversion_common_ndk-sm8850.so;FIX_SONAME
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libaudiocloudctrl.so
 vendor/lib64/libaudiofeaturestats.so
