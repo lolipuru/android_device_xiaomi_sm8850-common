@@ -1097,6 +1097,8 @@ vendor/etc/android.hardware.security.onekeymint-service-qti.rc
 # Listen
 vendor/lib64/libeai_fixed.so
 vendor/lib64/libeai_float.so
+vendor/lib64/libfmpal.so
+vendor/lib64/libhfp_pal.so
 vendor/lib64/liblistensoundmodel2vendor.so
 vendor/lib64/liblistensoundmodelaidl.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModelAidl-V1-ndk.so
