@@ -126,7 +126,8 @@ blob_fixups: blob_fixups_user_type = {
     (
         'vendor/lib64/libaudioserviceexampleimpl.so',
     ): blob_fixup()
-        .add_needed('libaudioutils_shim.so'),
+        .add_needed('libaudioutils_shim.so')
+        .add_needed('libbluetooth_audio_session_aidl_shim.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

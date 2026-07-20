@@ -63,6 +63,7 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libalsautilsv2.vendor \
     libaudioutils_shim \
+    libbluetooth_audio_session_aidl_shim \
     libmediautils_vendor.vendor \
     libqcompostprocbundle \
     libqcomvisualizer \
