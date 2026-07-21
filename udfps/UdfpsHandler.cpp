@@ -14,10 +14,6 @@
 
 #include "UdfpsHandler.h"
 
-#define COMMAND_NIT 10
-#define PARAM_NIT_FOD 1
-#define PARAM_NIT_NONE 0
-
 #define COMMAND_FOD_PRESS_STATUS 1
 #define PARAM_FOD_PRESSED 1
 #define PARAM_FOD_RELEASED 0
@@ -25,11 +21,6 @@
 #define FOD_STATUS_PATH "/sys/class/touch/touch_dev/fod_press_status"
 #define FOD_STATUS_OFF 0
 #define FOD_STATUS_ON 1
-
-#define DISP_PARAM_PATH "/sys/devices/virtual/mi_display/disp_feature/disp-DSI-0/disp_param"
-#define DISP_PARAM_LOCAL_HBM_MODE "9"
-#define DISP_PARAM_LOCAL_HBM_OFF "0"
-#define DISP_PARAM_LOCAL_HBM_ON "1"
 
 #define FINGERPRINT_ACQUIRED_VENDOR 7
 
@@ -96,12 +87,6 @@ class XiaomiSM8850UdfpsHander : public UdfpsHandler {
     }
 
     void setFingerDown(bool pressed) {
-        mDevice->extCmd(mDevice, COMMAND_NIT, pressed ? PARAM_NIT_FOD : PARAM_NIT_NONE);
-
-        set(DISP_PARAM_PATH,
-            std::string(DISP_PARAM_LOCAL_HBM_MODE) + " " +
-                    (pressed ? DISP_PARAM_LOCAL_HBM_ON : DISP_PARAM_LOCAL_HBM_OFF));
-
         if (pressed) {
             mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS, PARAM_FOD_PRESSED);
         }
