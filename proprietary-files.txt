@@ -128,7 +128,6 @@ vendor/lib64/libar-gsl.so
 vendor/lib64/libar-pal.so
 vendor/lib64/libarmemlog.so
 vendor/lib64/libats.so
-vendor/lib64/libaudio_aidl_conversion_common_ndk.so:vendor/lib64/libaudio_aidl_conversion_common_ndk-sm8850.so;FIX_SONAME
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libaudiocloudctrl.so
 vendor/lib64/libaudiofeaturestats.so
@@ -256,6 +255,7 @@ vendor/lib64/soundfx/libdynamicsprocessingaidl.so;DISABLE_DEPS
 vendor/lib64/soundfx/libhwdapaidl.so;DISABLE_DEPS
 vendor/lib64/soundfx/libloudnessenhanceraidl.so;DISABLE_DEPS
 vendor/lib64/soundfx/liblvacfsprocessingaidl.so;DISABLE_DEPS
+vendor/lib64/soundfx/libspatializer_aosp_aidl_sve.so;DISABLE_DEPS
 vendor/lib64/soundfx/libmiwndnsprocessingaidl.so;DISABLE_DEPS
 vendor/lib64/soundfx/libqcompostprocbundle.so
 vendor/lib64/soundfx/libqcomvisualizer.so
@@ -275,6 +275,7 @@ vendor/etc/init/hw/init.batterysecret.rc
 # Bluetooth
 vendor/bin/hw/android.hardware.bluetooth@aidl-service-qti
 vendor/etc/init/android.hardware.bluetooth@aidl-service-qti-debug.rc:vendor/etc/init/android.hardware.bluetooth@aidl-service-qti.rc
+vendor/etc/vintf/manifest/bcs-ranging.xml
 vendor/etc/vintf/manifest/bluetooth_hci.xml
 vendor/etc/vintf/manifest/bluetooth_sar.xml
 vendor/etc/vintf/manifest/bluetooth-finder.xml
@@ -316,10 +317,15 @@ vendor/lib64/vendor.qti.hardware.bttpi-V3-ndk.so
 odm/etc/vintf/manifest/misensor_camera.xml
 vendor/etc/init/vendor.qti.camera.provider-service_64.rc
 vendor/etc/permissions/camera_extensions.xml
+vendor/etc/vintf/manifest/vendor.qti.camera.offlinecamera-impl.xml
+vendor/etc/vintf/manifest/vendor.qti.camera.provider.xml
 vendor/etc/vintf/manifest/vendor.xiaomi.camera.aon-impl.xml
 vendor/etc/vintf/manifest/vendor.xiaomi.hardware.aidl.intentaware-service.xml
 vendor/etc/vintf/manifest/vendor.xiaomi.hardware.aidlbgservice-service.xml
+vendor/etc/vintf/manifest/vendor.xiaomi.hardware.camera.mivimessage-service.xml
 vendor/etc/vintf/manifest/vendor.xiaomi.hardware.dynamiccameraserver.xml
+vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys.common.xml
+vendor/etc/vintf/manifest/vendor.xiaomi.hardware.postprocservice-service.xml
 vendor/etc/vintf/manifest/vendor.xiaomi.hardware.quickcamera.xml
 vendor/framework/androidx.camera.extensions.impl.jar
 
@@ -1187,6 +1193,7 @@ vendor/lib64/libqcodec2_utils.so
 vendor/lib64/libqcodec2_v4l2codec.so
 vendor/lib64/libsv_common.so
 vendor/lib64/libsv.so
+vendor/lib64/libqconfigclient.so
 vendor/lib64/qti.video.utils.videobufferlayout.so
 
 # MemHal
@@ -1247,9 +1254,13 @@ vendor/lib64/libQnnSaver.so
 vendor/lib64/libQnnSystem.so
 
 # NFC
-odm/lib64/nfc_nci.st21nfc.st.so
-odm/etc/libnfc-nci.conf
 odm/bin/hw/android.hardware.nqnfc-service.nxp
+odm/etc/init/nfc2-service-nxp.rc
+odm/etc/libnfc-nci.conf
+odm/etc/libnfc-nxp_RF.conf
+odm/etc/libnfc-nxp.conf
+odm/etc/vintf/manifest/nfc2-service-nxp.xml
+odm/lib64/nfc_nci.st21nfc.st.so
 system_ext/etc/permissions/com.nxp.nfc.nq.xml
 vendor/bin/nqnfcinfo
 vendor/etc/1-SN1X0_SPC.txt
@@ -1951,14 +1962,15 @@ vendor/lib64/libtrustedapploader.so
 
 # WiFi
 vendor/bin/cnss-daemon
+vendor/bin/wifi_qos_daemon
 vendor/etc/init/init.vendor.wlan.rc
 vendor/etc/wifi/models/qcom_game_latency_predict.dlc
 vendor/etc/wifi/models/qcom_game_latency_predict_2.dlc
 vendor/etc/wifi/p2p_supplicant_overlay.conf
 vendor/etc/wifi/peach_v2/WCNSS_qcom_cfg.ini
-vendor/etc/wifi/kiwi_v2/WCNSS_qcom_cfg.ini
 vendor/etc/wifi/vendor_cmd.xml
 vendor/etc/wifi/wpa_supplicant_overlay.conf
+vendor/lib64/libWlanServiceJni.so
 
 # Wifi Display (vendor)
 vendor/bin/wfdhdcphalservice
