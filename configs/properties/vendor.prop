@@ -214,6 +214,14 @@ debug.stagefright.c2inputsurface=-1
 # MTE
 ro.arm64.memtag.bootctl_supported=1
 
+# Perf
+ro.vendor.extension_library=libqti-perfd-client.so
+ro.vendor.perf-hal.ver=3.0
+ro.vendor.perf.scroll_opt=1
+ro.vendor.qspm.enable=true
+vendor.perf.framepacing.enable=1
+vendor.perf.qfps.enable=1
+
 # QCOM
 ro.soc.manufacturer=QTI
 ro.vendor.board.family=f-canoe
