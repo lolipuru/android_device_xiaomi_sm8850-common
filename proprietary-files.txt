@@ -828,7 +828,6 @@ vendor/lib64/vendor.qti.hardware.fingerprint-V1-ndk.so
 vendor/etc/init.qti.fm.sh
 vendor/etc/init/init.qti.fm.rc
 vendor/lib64/hw/vendor.qti.hardware.fm-impl.so
-vendor/lib64/vendor.qti.hardware.fm@1.0.so
 vendor/lib64/vendor.qti.hardware.fm-V1-ndk.so
 
 # Gatekeeper
@@ -1487,8 +1486,6 @@ vendor/lib64/qsn3_video.bin
 vendor/lib64/qsn3all.bin
 
 # QSPA
-system_ext/etc/init/qspa_system.rc
-system_ext/etc/qspa/qspa_default.rc
 vendor/etc/vintf/manifest/qspa/qspa-modem.xml
 vendor/etc/vintf/manifest/qspa/qspa-nav.xml
 

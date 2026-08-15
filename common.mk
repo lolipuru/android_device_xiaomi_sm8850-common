@@ -82,8 +82,7 @@ PRODUCT_PACKAGES += \
     libloudnessenhanceraidl \
     libreverbaidl \
     libvisualizeraidl \
-    qti-audio-types-aidl-V1-ndk.vendor \
-    qtiaudiohalvendorextn
+    qti-audio-types-aidl-V1-ndk.vendor
 
 AUDIO_HAL_DIR := hardware/qcom-caf/sm8850/audio/primary-hal/configs/canoe
 
