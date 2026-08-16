@@ -33,11 +33,12 @@
 import /vendor/etc/init/hw/init.qti.kernel.rc
 import /vendor/etc/init/hw/init.batterysecret.rc
 import /vendor/etc/init/hw/init.mi_thermald.rc
+import /vendor/etc/init/hw/init.mi_ambient.rc
 import /vendor/etc/init/hw/init.xiaomi.rc
+import /vendor/etc/init/hw/init.logcat.rc
 
 on early-init
     write /proc/sys/kernel/printk_devkmsg ratelimited
-
     export ADSP_LIBRARY_PATH /odm/lib/rfsa/adsp;/vendor/lib/rfsa/adsp/;/system/lib/rfsa/adsp;/system/vendor/lib/rfsa/adsp;/dsp
     # set tcp_mtu_probing to 1
     write /proc/sys/net/ipv4/tcp_mtu_probing 1
@@ -54,6 +55,9 @@ on init
     chmod 0660 /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
     start logd
 
+    # Initial uhid
+    chmod 0666 /dev/uhid
+
 on early-fs
     start vold
 
@@ -64,7 +68,7 @@ on fs
     restorecon_recursive /mnt/vendor/persist
     mkdir /mnt/vendor/persist/secnvm 0770 system system
     mkdir /mnt/vendor/persist/data 0700 system system
-    mount ext4 /dev/block/bootdevice/by-name/rescue /mnt/rescue noatime
+    # mount ext4 /dev/block/bootdevice/by-name/rescue /mnt/rescue noatime
     restorecon_recursive /mnt/rescue
 
 on post-fs
@@ -160,6 +164,109 @@ on post-fs-data
     restorecon /sys/module/migt/parameters/fpercent
     chmod 0666 /sys/module/migt/parameters/flt_preboost_gamemode
     restorecon /sys/module/migt/parameters/flt_preboost_gamemode
+    chmod 0666 /sys/module/migt/parameters/flt_gpu_enable
+    restorecon /sys/module/migt/parameters/flt_gpu_enable
+    chmod 0666 /sys/module/migt/parameters/flt_fence_enable
+    restorecon /sys/module/migt/parameters/flt_fence_enable
+
+    chmod 0777 /sys/module/mi_game/parameters/migt_freq
+    restorecon /sys/module/mi_game/parameters/migt_freq
+    chmod 0777 /sys/module/mi_game/parameters/migt_ms
+    restorecon /sys/module/mi_game/parameters/migt_ms
+    chmod 0777 /sys/module/mi_game/parameters/migt_thresh
+    restorecon /sys/module/mi_game/parameters/migt_thresh
+    chmod 0777 /sys/module/mi_game/parameters/boost_policy
+    restorecon /sys/module/mi_game/parameters/boost_policy
+    chmod 0777 /sys/module/mi_game/parameters/fps_variance_ratio
+    restorecon /sys/module/mi_game/parameters/fps_variance_ratio
+    chmod 0777 /sys/module/mi_game/parameters/super_task_max_num
+    restorecon /sys/module/mi_game/parameters/super_task_max_num
+    chmod 0777 /sys/module/mi_game/parameters/migt_ceiling_freq
+    restorecon /sys/module/mi_game/parameters/migt_ceiling_freq
+    chmod 0777 /sys/module/mi_game/parameters/stask_candidate_num
+    restorecon /sys/module/mi_game/parameters/stask_candidate_num
+    chmod 0666 /sys/module/mi_game/parameters/glk_disable
+    restorecon /sys/module/mi_game/parameters/glk_disable
+    chmod 0666 /sys/module/mi_game/parameters/glk_fbreak_enable
+    restorecon /sys/module/mi_game/parameters/glk_fbreak_enable
+    chmod 0666 /sys/module/mi_game/parameters/glk_freq_limit_walt
+    restorecon /sys/module/mi_game/parameters/glk_freq_limit_walt
+    chmod 0666 /sys/module/mi_game/parameters/glk_minfreq
+    restorecon /sys/module/mi_game/parameters/glk_minfreq
+    chmod 0666 /sys/module/mi_game/parameters/glk_maxfreq
+    restorecon /sys/module/mi_game/parameters/glk_maxfreq
+    chmod 0666 /sys/module/mi_game/parameters/force_reset_runtime
+    restorecon /sys/module/mi_game/parameters/force_reset_runtime
+    chmod 0666 /sys/module/mi_game/parameters/mi_viptask
+    restorecon /sys/module/mi_game/parameters/mi_viptask
+    chmod 0666 /sys/module/mi_game/parameters/mi_freq_enable
+    restorecon /sys/module/mi_game/parameters/mi_freq_enable
+    chmod 0666 /sys/module/mi_game/parameters/stask_prefer_cluster
+    restorecon /sys/module/mi_game/parameters/stask_prefer_cluster
+    chmod 0666 /sys/module/mi_game/parameters/render_prefer_cluster
+    restorecon /sys/module/mi_game/parameters/render_prefer_cluster
+    chmod 0666 /sys/module/mi_game/parameters/vip_prefer_cluster
+    restorecon /sys/module/mi_game/parameters/vip_prefer_cluster
+    chmod 0666 /sys/module/mi_game/parameters/ip_prefer_cluster
+    restorecon /sys/module/mi_game/parameters/ip_prefer_cluster
+    chmod 0666 /sys/module/mi_game/parameters/force_forbidden_walt_lb
+    restorecon /sys/module/mi_game/parameters/force_forbidden_walt_lb
+    chmod 0666 /sys/module/mi_game/parameters/force_viptask_select_rq
+    restorecon /sys/module/mi_game/parameters/force_viptask_select_rq
+    chmod 0666 /sys/module/mi_game/parameters/force_cluster_sched_enable
+    restorecon /sys/module/mi_game/parameters/force_cluster_sched_enable
+    chmod 0666 /sys/module/mi_game/parameters/choose_cluster_disable
+    restorecon /sys/module/mi_game/parameters/choose_cluster_disable
+    chmod 0666 /sys/module/mi_game/parameters/flw_enable
+    restorecon /sys/module/mi_game/parameters/flw_enable
+    chmod 0666 /sys/module/mi_game/parameters/flw_freq_enable
+    restorecon /sys/module/mi_game/parameters/flw_freq_enable
+    chmod 0666 /sys/module/mi_game/parameters/choose_other_cluster_load
+    restorecon /sys/module/mi_game/parameters/choose_other_cluster_load
+    chmod 0666 /sys/module/mi_game/parameters/choose_asym_cpu
+    restorecon /sys/module/mi_game/parameters/choose_asym_cpu
+    chmod 0666 /sys/module/mi_game/parameters/choose_run_cluster_load
+    restorecon /sys/module/mi_game/parameters/choose_run_cluster_load
+    chmod 0666 /sys/module/mi_game/parameters/choose_flw_type
+    restorecon /sys/module/mi_game/parameters/choose_flw_type
+    chmod 0666 /sys/module/mi_game/parameters/target_delta
+    restorecon /sys/module/mi_game/parameters/target_delta
+    chmod 0666 /sys/module/mi_game/parameters/up_thresh_margin
+    restorecon /sys/module/mi_game/parameters/up_thresh_margin
+    chmod 0666 /sys/module/mi_game/parameters/down_thresh_margin
+    restorecon /sys/module/mi_game/parameters/down_thresh_margin
+    chmod 0666 /sys/module/mi_game/parameters/choose_avg_num
+    restorecon /sys/module/mi_game/parameters/choose_avg_num
+    chmod 0666 /sys/module/mi_game/parameters/mi_low_freq
+    restorecon /sys/module/mi_game/parameters/mi_low_freq
+    chmod 0666 /sys/module/mi_game/parameters/mi_high_freq
+    restorecon /sys/module/mi_game/parameters/mi_high_freq
+    chmod 0666 /sys/module/mi_game/parameters/pro_thresh_freq
+    restorecon /sys/module/mi_game/parameters/pro_thresh_freq
+    chmod 0666 /sys/module/mi_game/parameters/choose_wake_state
+    restorecon /sys/module/mi_game/parameters/choose_wake_state
+    chmod 0666 /sys/module/mi_game/parameters/fpercent_other
+    restorecon /sys/module/mi_game/parameters/fpercent_other
+    chmod 0666 /sys/module/mi_game/parameters/fpercent
+    restorecon /sys/module/mi_game/parameters/fpercent
+    chmod 0666 /sys/module/mi_game/parameters/flt_preboost_gamemode
+    restorecon /sys/module/mi_game/parameters/flt_preboost_gamemode
+    chmod 0666 /sys/module/migt/parameters/game_task_list
+    restorecon /sys/module/migt/parameters/game_task_list
+    chmod 0666 /sys/module/migt/parameters/game_app_select_sf
+    restorecon /sys/module/migt/parameters/game_app_select_sf
+    chmod 0666 /sys/module/mi_game/parameters/game_task_list
+    restorecon /sys/module/mi_game/parameters/game_task_list
+    chmod 0666 /sys/module/mi_game/parameters/game_app_select_sf
+    restorecon /sys/module/mi_game/parameters/game_app_select_sf
+    chmod 0666 /sys/module/mi_game/parameters/flt_gpu_enable
+    restorecon /sys/module/mi_game/parameters/flt_gpu_enable
+    chmod 0666 /sys/module/mi_game/parameters/flt_fence_enable
+    restorecon /sys/module/mi_game/parameters/flt_fence_enable
+    chmod 0666 /sys/module/mi_game/parameters/freedom_window_app
+    restorecon /sys/module/mi_game/parameters/freedom_window_app
+    chmod 0666 /sys/module/mi_game/parameters/freedom_cpumask_val
+    restorecon /sys/module/mi_game/parameters/freedom_cpumask_val
 
     chmod 0666 /dev/metis
     restorecon /dev/metis
@@ -288,6 +395,38 @@ on post-fs-data
     restorecon /sys/module/miloadtrace/parameters/expand_shift
     chmod 0666 /sys/module/miloadtrace/parameters/kern_percent
     restorecon /sys/module/miloadtrace/parameters/kern_percent
+
+    chmod 0666 /sys/module/plat_common/parameters/sched_relaxed
+    restorecon /sys/module/plat_common/parameters/sched_relaxed
+    chmod 0666 /sys/module/plat_common/parameters/sched_sync
+    restorecon /sys/module/plat_common/parameters/sched_sync
+
+    chown root system /dev/xr_perf_actuator
+    chmod 666 /dev/xr_perf_actuator
+    chown root system /dev/xr_fbt
+    chmod 666 /dev/xr_fbt
+
+    # Wait (2 second at most) for 'inherit_enable/sched_enable' entry to be created
+    wait /sys/kernel/qos_inherit/inherit_enable 2
+    wait /sys/kernel/qos_sched/sched_enable 2
+    wait /sys/kernel/speedlock/sl_enable 2
+    chmod 0660 /sys/kernel/qos_inherit/inherit_enable
+    chmod 0660 /sys/kernel/qos_sched/sched_enable
+    chmod 0660 /sys/kernel/speedlock/sl_enable
+    write /sys/kernel/qos_inherit/inherit_enable 0x3fff
+    write /sys/kernel/qos_sched/sched_enable 1
+    write /sys/kernel/speedlock/sl_enable 1
+
+    chown system system /sys/kernel/low_lat_mem/predo
+    chmod 0664 /sys/kernel/low_lat_mem/predo
+    chown system system /sys/kernel/low_lat_mem/start
+    chmod 0664 /sys/kernel/low_lat_mem/start
+    chown system system /sys/kernel/low_lat_mem/enable
+    chmod 0664 /sys/kernel/low_lat_mem/enable
+    chown system system /sys/kernel/low_lat_mem/dfx/enable
+    chmod 0664 /sys/kernel/low_lat_mem/dfx/enable
+    chown root system /sys/kernel/low_lat_mem/dfx/reset
+    chmod 0220 /sys/kernel/low_lat_mem/dfx/reset
 
 on late-fs
     #exec_start wait_for_keymaster
@@ -422,6 +561,8 @@ on boot
     chown root system /sys/module/perf_helper/sched_assi/sched_keytask
     chmod 0664 /sys/module/perf_helper/sched_assi/sched_task_winstate
     chown root system /sys/module/perf_helper/sched_assi/sched_task_winstate
+    chmod 0666 /sys/module/perf_helper/sched_assi/bmark_group
+    chown media mediadrm /sys/module/perf_helper/sched_assi/bmark_group
     #END Performance_BoostFramework
 
     #MIUI ADD:Thermal_NodeReq
@@ -437,6 +578,19 @@ on boot
     chown system system /sys/class/thermal/thermal_message/special_cpu_limit
     chown system system /sys/class/thermal/thermal_message/temp_aware
     #END Thermal_NodeReq
+
+    mkdir /dev/cpuctl/bmark
+    chown system system /dev/cpuctl/bmark
+    chown system system /dev/cpuctl/bmark/tasks
+    chown system system /dev/cpuctl/bmark/cgroup.procs
+    chown system system /dev/cpuctl/bmark/cpu.shares
+    chmod 0664 /dev/cpuctl/bmark/tasks
+    chmod 0664 /dev/cpuctl/bmark/cgroup.procs
+    chmod 0664 /dev/cpuctl/bmark/cpu.shares
+    write /dev/cpuctl/bmark/cpu.shares 4096
+
+on init && property:ro.boot.hardware.sku=shuntian
+   setprop dalvik.vm.heapgrowthlimit 384m
 
 on property:vendor.display.lcd_density=560
    setprop dalvik.vm.heapgrowthlimit 256m
@@ -498,8 +652,8 @@ on property:sys.shutdown.requested=*
 
 # enable root version wlan log
 on property:ro.debuggable=1 && property:persist.vendor.performance.disable.wlan_logs=
-    start vendor.cnss_diag
-    start vendor.tcpdump
+    setprop persist.vendor.cnss_diag.enable true
+    setprop persist.vendor.tcpdump.enable true
 
 # adapt tcpdump and cnss_diag
 service vendor.cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM
@@ -524,10 +678,12 @@ service vendor.tcpdump /vendor/bin/tcpdump -i any -W 3 -C 5 -s 134 -w /data/vend
     oneshot
 
 on property:persist.vendor.tcpdump.enable=true
+    exec - root -- /system_ext/bin/conn_info -i
     start vendor.tcpdump
 
 on property:persist.vendor.tcpdump.enable=false
     stop vendor.tcpdump
+    exec - root -- /system_ext/bin/conn_info -r
 
 service vendor.nv_mac /vendor/bin/nv_mac
     class late_start
@@ -576,8 +732,10 @@ service vendor.sniffer.circular /vendor/bin/tcpdump -i wlan0 -W 3 -C 300 -w /dat
 
 on property:vendor.hardware.wlan.runtcpdump=stop
      stop vendor.tcpdump
+     exec - root -- /system_ext/bin/conn_info -r
 
 on property:vendor.hardware.wlan.runtcpdump=start
+     exec - root -- /system_ext/bin/conn_info -i
      start vendor.tcpdump
 
 on property:vendor.hardware.wlan.runsniffer=stop
@@ -610,6 +768,30 @@ service ufs_ffu_service /vendor/bin/sh /vendor/bin/ufs_ffu.sh
     class core
     user root
     oneshot
+
+service mi-serial-sh /odm/bin/init.mi.serial.sh
+    class late_start
+    user root
+    group root system radio
+    disabled
+    oneshot
+
+on post-fs && property:ro.product.device=shuntian
+    start mi-serial-sh
+on property:ro.product.device=shuntian && property:ro.vendor.ril.oem.sno=*
+    setprop ro.ril.oem.sno ${ro.vendor.ril.oem.sno}
+on property:ro.product.device=shuntian && property:ro.vendor.ril.oem.psno=*
+    setprop ro.ril.oem.psno ${ro.vendor.ril.oem.psno}
+
+service mi-factory_id-sh /vendor/odm/bin/init.mi.factory_id.sh
+    class late_start
+    user root
+    group root system radio
+    disabled
+    oneshot
+
+on post-fs && property:ro.product.device=shuntian
+    start mi-factory_id-sh
 
 on property:sys.boot_completed=1
     start ufs_ffu_service

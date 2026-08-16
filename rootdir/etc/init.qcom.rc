@@ -309,6 +309,7 @@ on post-fs-data
 
     #MIUI ADD:Camera_CamSched
     chmod 0666 /dev/mi_cam_sched
+    chmod 0666 /sys/devices/virtual/micam/mi_cam_sched/cam_low_demand_idle
     #END Camera_CamSched
 
     #Create folder of memory
@@ -553,6 +554,8 @@ on property:sys.boot_completed=1
     chown media audio /sys/kernel/wcd_cpe0/fw_name
     #Reinit lmkd to reconfigure lmkd properties
     setprop lmkd.reinit 1
+    # UWB persist property
+    setprop persist.vendor.qti.uwb.lazy_hal_supported true
     chown media audio /sys/kernel/aud_dev/state
     write /sys/devices/virtual/cvp/cvp/boot 1
     write /dev/kmsg "start qrtr-lookup after Boot completed"
