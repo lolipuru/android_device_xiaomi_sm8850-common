@@ -222,6 +222,10 @@ PRODUCT_COPY_FILES += \
     kernel/platform/kernel-6.12/vendor/xiaomi/kernel/modules-lists/modules.systemdlkm_blocklist.msm.canoe:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
 endif
 
+# Keylayout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/keylayout/uinput-xiaomi.kl:$(TARGET_COPY_OUT_ODM)/usr/keylayout/uinput-xiaomi.kl
+
 # Keymint
 PRODUCT_SOONG_NAMESPACES += \
     hardware/nxp/keymint/generic \
