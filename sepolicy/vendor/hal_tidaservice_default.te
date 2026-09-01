@@ -1,8 +1,0 @@
-type hal_tidaservice_default, domain;
-type hal_tidaservice_default_exec, exec_type, file_type, vendor_file_type;
-type hal_tidaservice_service, hal_service_type, service_manager_type;
-
-init_daemon_domain(hal_tidaservice_default)
-binder_use(hal_tidaservice_default)
-
-allow hal_tidaservice_default hal_tidaservice_service:service_manager { add find };

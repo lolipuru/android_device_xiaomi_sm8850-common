@@ -24,10 +24,6 @@ vendor.dolby.dvs.IDvs/default u:object_r:dvs_aidl_service:s0
 # Fingerprint
 vendor.xiaomi.hardware.fx.tunnel.IMiFxTunnel/default                    u:object_r:vendor_hal_fingerprint_service_xiaomi:s0
 
-# FIDOCA
-vendor.xiaomi.hardware.mfidoca.IFidoService/default    u:object_r:hal_mfidoca_service:s0
-vendor.xiaomi.hardware.aidl.tidaservice.ITidaService/default    u:object_r:hal_tidaservice_service:s0
-
 # FrameMaster
 vendor.xiaomi.hardware.framemaster.IFrameMaster/default          u:object_r:vendor_hal_framemaster_xiaomi_service:s0
 

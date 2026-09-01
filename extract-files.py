@@ -114,16 +114,6 @@ blob_fixups: blob_fixups_user_type = {
     ): blob_fixup()
         .replace_needed('android.hardware.media.c2-V1-ndk.so', 'android.hardware.media.c2-V2-ndk.so'),
     (
-        'odm/lib64/libmt.so',
-    ): blob_fixup()
-        .replace_needed('libkeymint.so', 'libkeymint-sm8850.so')
-        .replace_needed('libkeymint_remote_prov_support.so', 'libkeymint_remote_prov_support-sm8850.so')
-        .replace_needed('libkeymint_support.so', 'libkeymint_support-sm8850.so'),
-    (
-        'vendor/lib64/libkeymint_remote_prov_support-sm8850.so',
-    ): blob_fixup()
-        .replace_needed('libcppcose_rkp.so', 'libcppcose_rkp-sm8850.so'),
-    (
         'vendor/lib64/libaudioserviceexampleimpl.so',
     ): blob_fixup()
         .add_needed('libaudioutils_shim.so')
