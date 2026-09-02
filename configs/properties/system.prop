@@ -4,9 +4,6 @@ ro.vendor.qti.va_aosp.support=1
 # Charger
 ro.charger.enable_suspend=1
 
-# CNE
-persist.vendor.cne.feature=1
-
 # Media
 media.aac_51_output_enabled=true
 ro.media.xml_variant.profiles=_canoe_v2
@@ -21,7 +18,6 @@ persist.data.df.mux_count=8
 persist.data.df.ul_mode=5
 persist.data.wda.enable=true
 persist.rmnet.data.enable=true
-persist.vendor.data.mode=concurrent
 persist.vendor.data.mutualex.mode=disabled
 
 # NFC

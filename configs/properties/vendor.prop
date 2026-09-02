@@ -1,7 +1,4 @@
 # Audio
-aaudio.hw_burst_min_usec=2000
-aaudio.mmap_exclusive_policy=2
-aaudio.mmap_policy=2
 persist.vendor.audio.auto.scenario=true
 persist.vendor.audio.misound.disable=true
 ro.audio.flinger_standbytime_ms=2000
@@ -71,28 +68,17 @@ vendor.qc2audio.suspend.enabled=true
 
 # Bluetooth
 bluetooth.core.le_audio.codec_extension_aidl.enabled=false
-bluetooth.device.class_of_device=90,2,12
-bluetooth.profile.asha.central.enabled=true
 bluetooth.profile.asha.central.enabled=true
 bluetooth.profile.bap.broadcast.assist.enabled=true
-bluetooth.profile.bap.broadcast.assist.enabled=true
-bluetooth.profile.bap.broadcast.source.enabled=true
 bluetooth.profile.bap.broadcast.source.enabled=true
 bluetooth.profile.bap.unicast.client.enabled=true
-bluetooth.profile.bap.unicast.client.enabled=true
-bluetooth.profile.ccp.server.enabled=true
 bluetooth.profile.ccp.server.enabled=true
 bluetooth.profile.csip.set_coordinator.enabled=true
-bluetooth.profile.csip.set_coordinator.enabled=true
-bluetooth.profile.hap.client.enabled=true
 bluetooth.profile.hap.client.enabled=true
 bluetooth.profile.mcp.server.enabled=true
-bluetooth.profile.mcp.server.enabled=true
-bluetooth.profile.vcp.controller.enabled=true
 bluetooth.profile.vcp.controller.enabled=true
 persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac-lhdc-mihc
 persist.bluetooth.a2dp_offload.disabled=false
-persist.bluetooth.leaudio_offload.disabled=false
 persist.sys.fflag.override.settings_bluetooth_hearing_aid=true
 persist.vendor.bt.aac_frm_ctl.enabled=true
 persist.vendor.bt.aac_vbr_frm_ctl.enabled=true
@@ -174,9 +160,6 @@ persist.vendor.fingerprint.type=udfps
 # FUSE
 persist.sys.fuse.passthrough.enable=true
 
-# GNSS
-persist.backup.ntpServer=0.pool.ntp.org
-
 # Graphics
 debug.egl.hw=0
 debug.graphics.game_default_frame_rate.disabled=1
@@ -228,7 +211,6 @@ vendor.keymint.retry_timer=5
 debug.c2.use_dmabufheaps=1
 debug.stagefright.c2inputsurface=-1
 media.c2.hal.selection=aidl
-media.stagefright.audio.deep=false
 vendor.media.omx=0
 
 # MTE
@@ -262,7 +244,6 @@ persist.vendor.radio.procedure_bytes=SKIP
 persist.vendor.radio.sib16_support=1
 persist.vendor.rcs.singlereg.feature=1
 ro.com.android.dataroaming=true
-ro.telephony.default_network=33,33
 ro.vendor.radio.build_profile=miui
 ro.vendor.radio.build_region=global
 
