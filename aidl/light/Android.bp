@@ -1,0 +1,27 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "android.hardware.light-service.sm8850",
+    defaults: ["hidl_defaults"],
+    vendor: true,
+    relative_install_path: "hw",
+    init_rc: ["android.hardware.light-service.sm8850.rc"],
+    vintf_fragments: ["android.hardware.light-service.sm8850.xml"],
+    srcs: [
+        "models/Color.cpp",
+        "models/State.cpp",
+        "Devices.cpp",
+        "Lights.cpp",
+        "Utils.cpp",
+        "service.cpp",
+    ],
+    local_include_dirs: ["."],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "android.hardware.light-V2-ndk",
+    ],
+}

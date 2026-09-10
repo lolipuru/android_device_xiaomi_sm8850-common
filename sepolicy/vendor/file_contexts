@@ -81,6 +81,11 @@
 # IR
 /dev/ir_spi u:object_r:ir_spi_device:s0
 
+
+# LED
+/vendor/bin/hw/android\.hardware\.light-service\.sm8850 u:object_r:hal_light_default_exec:s0
+/sys/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a8c000.i2c/i2c-3/3-0030/leds/aw21024_led(/.*)?      u:object_r:vendor_sysfs_led_file:s0
+
 # Metis/Migt
 /dev/metis u:object_r:migt_dev:s0
 /dev/migt u:object_r:migt_dev:s0

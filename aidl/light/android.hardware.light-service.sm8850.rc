@@ -1,0 +1,22 @@
+on early-boot
+    chown system system /sys/class/leds/aw21024_led/hwen
+    chmod 0664 /sys/class/leds/aw21024_led/hwen
+    chown system system /sys/class/leds/aw21024_led/color
+    chmod 0664 /sys/class/leds/aw21024_led/color
+    chown system system /sys/class/leds/aw21024_led/rgbcolor
+    chmod 0664 /sys/class/leds/aw21024_led/rgbcolor
+    chown system system /sys/class/leds/aw21024_led/period
+    chmod 0664 /sys/class/leds/aw21024_led/period
+    chown system system /sys/class/leds/aw21024_led/repeat
+    chmod 0664 /sys/class/leds/aw21024_led/repeat
+    chown system system /sys/class/leds/aw21024_led/run
+    chmod 0664 /sys/class/leds/aw21024_led/run
+    chown system system /sys/class/leds/aw21024_led/effect
+    chmod 0664 /sys/class/leds/aw21024_led/effect
+
+service vendor.light-sm8850 /vendor/bin/hw/android.hardware.light-service.sm8850
+    class hal
+    user system
+    group system
+    shutdown critical
+    interface aidl android.hardware.light.ILights/default
