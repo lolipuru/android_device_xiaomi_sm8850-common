@@ -292,6 +292,10 @@ vendor/lib64/vendor.qti.hardware.bluetooth.btavsprovider-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.bluetooth.xpanprovider-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.bttpi-V3-ndk.so
 
+# Bluetooth (Xpan)
+system_ext/etc/permissions/privapp-permission-xpan.xml
+system_ext/priv-app/Xpan/Xpan.apk
+
 # Camera
 odm/etc/vintf/manifest/misensor_camera.xml
 vendor/etc/init/vendor.qti.camera.provider-service_64.rc

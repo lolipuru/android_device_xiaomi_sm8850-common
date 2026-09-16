@@ -268,7 +268,8 @@ PRODUCT_PACKAGES += \
     SettingsOverlayXiaomi \
     SystemUIOverlayXiaomi \
     TelephonyResXiaomi \
-    WifiOverlayXiaomi
+    WifiOverlayXiaomi \
+    XpanOverlayXiaomi
 
 # Pagesize
 PRODUCT_CHECK_PREBUILT_MAX_PAGE_SIZE := false

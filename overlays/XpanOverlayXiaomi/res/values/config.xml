@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool translatable="false" name="profile_supported_xpan">true</bool>
+</resources>
