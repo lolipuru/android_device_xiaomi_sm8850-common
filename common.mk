@@ -211,6 +211,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/android.hardware.consumerir.xml
 
+# Kernel
+ifeq ($(TARGET_OPT_IN_OSS_KERNEL),true)
+PRODUCT_COPY_FILES += \
+    kernel/platform/kernel-6.12/vendor/xiaomi/kernel/modules-lists/modules.systemdlkm_blocklist.msm.canoe:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
+endif
+
 # Keymint
 PRODUCT_SOONG_NAMESPACES += \
     hardware/nxp/keymint/generic \
