@@ -10,9 +10,11 @@ namespace android {
 namespace hardware {
 namespace light {
 
-Color::Color() : red(0), green(0), blue(0) {}
+Color::Color() : red(0), green(0), blue(0), brightness(0) {}
 
-Color::Color(uint8_t r, uint8_t g, uint8_t b) : red(r), green(g), blue(b) {};
+Color::Color(uint8_t r, uint8_t g, uint8_t b) : red(r), green(g), blue(b), brightness(0xFF) {}
+
+Color::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t br) : red(r), green(g), blue(b), brightness(br) {}
 
 Color::Color(uint32_t color) {
     // Extract brightness from AARRGGBB.
@@ -23,16 +25,12 @@ Color::Color(uint32_t color) {
     green = (color >> 8) & 0xFF;
     blue = color & 0xFF;
 
-    // Scale RGB colors if a brightness has been applied by the user
-    if (alpha > 0 && alpha < 0xFF) {
-        red = red * alpha / 0xFF;
-        green = green * alpha / 0xFF;
-        blue = blue * alpha / 0xFF;
-    }
+    // Set 0xFF as default brightness 
+    brightness = alpha ? alpha : ((red || green || blue) ? 0xFF : 0);
 }
 
 bool Color::isLit() const {
-    return !!red || !!green || !!blue;
+    return (red || green || blue) && (brightness > 0);
 }
 
 static constexpr uint8_t kRedWeight = 77;

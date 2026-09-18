@@ -41,7 +41,7 @@ bool writeToFile(const std::string& file, const T content) {
         return false;
     }
 
-    fileStream << content;
+    fileStream << content << std::endl;
     return true;
 }
 
