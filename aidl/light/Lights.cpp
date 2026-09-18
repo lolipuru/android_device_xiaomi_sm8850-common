@@ -58,12 +58,20 @@ ndk::ScopedAStatus Lights::setLightState(int32_t id, const HwLightState& hwLight
             }
             break;
         case LightType::MICROPHONE:
-            mLastMicrophoneState = state;
-            updateNotificationColor();
+            if (mDevices.hasNotificationDevices()) {
+                mLastMicrophoneState = state;
+                updateNotificationColor();
+            } else {
+                return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+            }
             break;
         case LightType::CAMERA:
-            mLastCameraState = state;
-            updateNotificationColor();
+            if (mDevices.hasNotificationDevices()) {
+                mLastCameraState = state;
+                updateNotificationColor();
+            } else {
+                return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+            }
             break;
         default:
             return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
