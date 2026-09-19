@@ -11,6 +11,7 @@ cc_binary {
     shared_libs: [
         "libbinder_ndk",
         "liblog",
+        "vendor.xiaomi.sensor.citsensorservice-V1-ndk",
     ],
     init_rc: ["alsd.rc"],
 }
