@@ -1204,11 +1204,8 @@ odm/lib64/libQnnSystem.so
 odm/lib64/libQnnTFLiteDelegate.so
 
 # NFC
-odm/bin/hw/android.hardware.nqnfc-service.nxp
-odm/etc/init/nfc2-service-nxp.rc
 odm/etc/libnfc-nci.conf:vendor/etc/libnfc-nci.conf
 odm/etc/libnfc-nxp.conf:vendor/etc/libnfc-nxp.conf
-odm/etc/vintf/manifest/nfc2-service-nxp.xml
 odm/lib64/nfc_nci.st21nfc.st.so
 system_ext/etc/permissions/com.nxp.nfc.nq.xml
 vendor/bin/nqnfcinfo
