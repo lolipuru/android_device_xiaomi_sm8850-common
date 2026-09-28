@@ -21,6 +21,11 @@ android.hardware.media.c2.IComponentStore/default9                   u:object_r:
 vendor.dolby.dms.IDms/default    u:object_r:hal_aidl_dms_service:s0
 vendor.dolby.dvs.IDvs/default u:object_r:dvs_aidl_service:s0
 
+# Face
+vendor.xiaomi.hardware.aek.IAEKService/default               u:object_r:hal_miface_service:s0
+vendor.xiaomi.hardware.aon.IAlwaysOn/miaonservicebymiface    u:object_r:hal_miface_service:s0
+vendor.xiaomi.hardware.aon.auth.IAONAuth/default             u:object_r:hal_miface_service:s0
+
 # Fingerprint
 vendor.xiaomi.hardware.fx.tunnel.IMiFxTunnel/default                    u:object_r:vendor_hal_fingerprint_service_xiaomi:s0
 

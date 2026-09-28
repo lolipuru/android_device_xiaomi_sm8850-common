@@ -1,0 +1,35 @@
+type hal_miface_default, domain;
+hal_server_domain(hal_miface_default, hal_face)
+
+type hal_miface_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_miface_default)
+
+type hal_miface_service, hal_service_type, service_manager_type;
+add_service(hal_miface_default, hal_miface_service)
+
+binder_call(hal_miface_default, cameraserver)
+allow hal_miface_default cameraserver:fd use;
+allow hal_miface_default fwk_camera_service:service_manager find;
+allow cameraserver hal_miface_default:binder transfer;
+allow cameraserver hal_miface_default:dir search;
+allow cameraserver hal_miface_default:file r_file_perms;
+hal_client_domain(hal_miface_default, hal_graphics_allocator)
+get_prop(hal_miface_default, camera_config_prop)
+
+allow hal_miface_default mitee_client_device:chr_file rw_file_perms;
+allow hal_miface_default tee_device:chr_file rw_file_perms;
+allow hal_miface_default vendor_dmabuf_qseecom_heap_device:chr_file r_file_perms;
+allow hal_miface_default vendor_dmabuf_qseecom_ta_heap_device:chr_file r_file_perms;
+allow hal_miface_default vendor_membuf_dev:chr_file r_file_perms;
+allow hal_miface_default self:qipcrtr_socket create_socket_perms_no_ioctl;
+
+allow hal_miface_default face_vendor_data_file:dir create_dir_perms;
+allow hal_miface_default face_vendor_data_file:file create_file_perms;
+
+allow hal_miface_default sysfs_tp_fodstatus:file r_file_perms;
+allow hal_miface_default vendor_sysfs_displayfeature:file r_file_perms;
+
+set_prop(hal_miface_default, vendor_miface_prop)
+get_prop(hal_miface_default, vendor_display_prop)
+get_prop(hal_miface_default, vendor_fp_prop)
+get_prop(hal_miface_default, vendor_radio_prop)

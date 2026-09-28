@@ -1,6 +1,9 @@
 # Audio
 /dev/socket/audio_holder_socket_0 u:object_r:audio_socket:s0
 
+# AVF
+/(odm|vendor/odm)/firmware_oemvm(/.*)?    u:object_r:vendor_vm_file:s0
+
 # Battery
 /(vendor|system/vendor)/bin/batterysecret u:object_r:batterysecret_exec:s0
 
@@ -89,6 +92,17 @@
 # Micharge
 /(vendor|system/vendor)/bin/hw/vendor.xiaomi.hardware.micharge-service-dummy u:object_r:hal_micharge_default_exec:s0
 /dev/smart_charge_cdev u:object_r:vendor_smart_charge_device:s0
+
+# Miface
+/(odm|vendor/odm)/bin/hw/mifaced                u:object_r:hal_miface_default_exec:s0
+/data/vendor/face(/.*)?                         u:object_r:face_vendor_data_file:s0
+
+# Mitee
+/(odm|vendor/odm)/bin/tee-supplicant            u:object_r:tee_exec:s0
+/data/vendor/mitee(/.*)?                        u:object_r:mitee_data_file:s0
+/dev/tee0                                       u:object_r:mitee_client_device:s0
+/dev/teepriv0                                   u:object_r:mitee_client_device:s0
+/mnt/vendor/persist/mitee/data(/.*)?            u:object_r:mitee_sfs_file:s0
 
 # MliPay
 /(odm|vendor/odm|system/vendor)/bin/mlipayd u:object_r:hal_mlipay_default_exec:s0

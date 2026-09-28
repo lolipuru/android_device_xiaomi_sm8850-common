@@ -1,0 +1,3 @@
+set_prop(vendor_qvirt_proxyclient, vendor_mitee_prop)
+set_prop(vendor_qvirt_proxyclient, vendor_mi_qvirtmgr_prop)
+get_prop(vendor_qvirt_proxyclient, vendor_modprobe_prop)
