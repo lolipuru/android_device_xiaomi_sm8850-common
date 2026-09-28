@@ -1,3 +1,14 @@
 allow tee mnt_vendor_file:file r_file_perms;
 
 type_transition tee vendor_persist_data_file:dir vendor_persist_data_file;
+
+allow tee kmsg_device:chr_file w_file_perms;
+allow tee mitee_client_device:chr_file rw_file_perms;
+allow tee mitee_data_file:dir create_dir_perms;
+allow tee mitee_data_file:file create_file_perms;
+allow tee mitee_sfs_file:dir create_dir_perms;
+allow tee mitee_sfs_file:file create_file_perms;
+allow tee self:capability { chown dac_override setgid setuid };
+get_prop(tee, vendor_qvirtmgr_prop)
+get_prop(tee, vold_post_fs_data_prop)
+set_prop(tee, vendor_mitee_prop)

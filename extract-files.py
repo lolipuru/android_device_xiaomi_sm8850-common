@@ -4,7 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+import extract_utils.tools
 from extract_utils.fixups_blob import (
+    BlobFixupCtx,
+    File,
     blob_fixup,
     blob_fixups_user_type,
 )
@@ -17,6 +20,33 @@ from extract_utils.main import (
     ExtractUtils,
     ExtractUtilsModule,
 )
+from extract_utils.tools import (
+    llvm_objdump_path,
+)
+from extract_utils.utils import (
+    run_cmd,
+)
+
+def blob_fixup_miface_weak_nonsecure(
+    ctx: BlobFixupCtx,
+    file: File,
+    file_path: str,
+    *args,
+    **kwargs,
+):
+    # Use the non-secure camera and report WEAK strength
+    patches = [
+        (0x4C100, b'\x5a\x65\x41\x39', b'\xfa\x03\x1f\x2a'),  # mov w26, wzr
+        (0x4C818, b'\x33\x65\x41\x39', b'\xf3\x03\x1f\x2a'),  # mov w19, wzr
+        (0x75EF4, b'\xea\x13\x40\x39', b'\x2a\x00\x80\x52'),  # mov w10, #1
+    ]
+    with open(file_path, 'rb+') as f:
+        content = bytearray(f.read())
+        if all(content[o:o + 4] == old for o, old, _ in patches):
+            for o, _, new in patches:
+                content[o:o + 4] = new
+            f.seek(0)
+            f.write(content)
 
 namespace_imports = [
     'device/xiaomi/sm8850-common',
@@ -44,6 +74,7 @@ lib_fixups: lib_fixups_user_type = {
         'libcamxcommonutils',
         'libframemaster',
         'libmialgo',
+        'vendor.xiaomi.hardware.aon.auth-V1-ndk',
     ): lib_fixup_remove,
 }
 
@@ -120,6 +151,8 @@ blob_fixups: blob_fixups_user_type = {
     'system_ext/lib64/libwfdservice.so': blob_fixup()
         .add_needed('libaudiobase.so')
         .replace_needed('android.media.audio.common.types-V4-cpp.so', 'android.media.audio.common.types-V5-cpp.so'),
+    'odm/lib64/libmiface.so': blob_fixup()
+        .call(blob_fixup_miface_weak_nonsecure),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

@@ -1,6 +1,10 @@
 # Audio
 system_vendor_config_prop(vendor_audio_cloud_ctrl_mi_prop)
 
+# AVF
+vendor_restricted_prop(vendor_mitee_prop)
+vendor_internal_prop(vendor_mi_qvirtmgr_prop)
+
 # Camera
 vendor_public_prop(vendor_camera_p3enable_prop)
 vendor_public_prop(vendor_camera_sensor_prop)
@@ -11,6 +15,10 @@ vendor_public_prop(vendor_displayfeature_prop)
 
 # Dolby
 vendor_internal_prop(vendor_dolbyv_prop)
+
+# Face
+vendor_restricted_prop(vendor_miface_prop)
+vendor_internal_prop(vendor_miface_debug_prop)
 
 # Fingerprint
 vendor_public_prop(vendor_fp_prop)

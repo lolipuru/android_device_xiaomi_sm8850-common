@@ -8,5 +8,8 @@ type vendor_displaylog_device, dev_type;
 # Fingerprint
 type vendor_fingerprint_device, dev_type;
 
+# Mitee
+type mitee_client_device, dev_type;
+
 # Touchfeature
 type touchfeature_device, dev_type; 

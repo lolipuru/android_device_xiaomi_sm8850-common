@@ -189,4 +189,11 @@
             <instance>slot2</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true"> 
+        <name>vendor.xiaomi.hardware.aon.auth</name>
+        <interface>
+            <name>IAONAuth</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>

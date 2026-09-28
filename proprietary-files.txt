@@ -258,6 +258,32 @@ vendor/lib64/soundfx/libswgamedapaidl.so;DISABLE_DEPS
 vendor/lib64/soundfx/libswspatializeraidl.so;DISABLE_DEPS
 vendor/lib64/soundfx/libvolumelistener.so;DISABLE_DEPS
 
+# AVF
+vendor/bin/avf_qcvm_manager
+vendor/bin/vendor.qti.qtvm.proxyclient-service;MAKE_COPY_RULE_ONLY
+vendor/etc/avf/early_vms_oem_vm.xml
+vendor/etc/init/avf_qcvm_manager.rc
+vendor/etc/init/vendor.qti.qtvm.proxyclient-service.rc
+vendor/etc/qcvm_config.json
+vendor/etc/vintf/manifest/avf_qcvm_manager.xml
+vendor/lib64/libaho_corasick.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libandroid_logger.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libanyhow.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libbinder_rs.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libbitflags.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libenv_filter.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/liblibc.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/liblog_rust.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/liblogger.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libmemchr.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libnix.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libregex_syntax.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libregex.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/librustutils.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libstd.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libvendor_qti_AvfQcvmManager_V1.dylib.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libzerocopy.dylib.so;MAKE_COPY_RULE_ONLY
+
 # Batterysecret
 vendor/bin/batterysecret
 vendor/etc/init/hw/init.batterysecret.rc
@@ -773,6 +799,19 @@ vendor/etc/vintf/manifest/vendor.qti.hardware.embmssl.xml
 vendor/lib64/libembmsservice.so
 vendor/lib64/vendor.qti.hardware.embmsslaidl-V2-ndk.so
 
+# Face
+odm/bin/hw/mifaced
+odm/etc/init/miface_start_wait_mitee_boot_completed.rc
+odm/etc/init/miface.rc
+odm/etc/vintf/manifest/android.hardware.biometrics.face-v4.xml
+odm/etc/vintf/manifest/vendor.xiaomi.hardware.aon.auth.xml
+odm/lib64/libmiface.so;DISABLE_CHECKELF
+odm/mitee/ta/655a4b46-cd77-11ea-aafbf382a6988e7b.ta
+odm/mitee/ta/66147267-5b44-4aa3-bd734138c7fab03a.ta
+odm/mitee/ta/a13339be-7082-4d2d-bf83a53e4687a635.ta
+odm/mitee/ta/a3ba6512-6e0e-4065-93165e4a7d04ca08.ta
+vendor/lib64/vendor.xiaomi.sensor.aonframe-V1-ndk.so
+
 # FASTCRC
 vendor/lib64/libfastcrc.so
 
@@ -1038,6 +1077,11 @@ vendor/lib64/liblistensoundmodel2vendor.so
 vendor/lib64/liblistensoundmodelaidl.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModelAidl-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModelAidl-V2-ndk.so
+
+# Mitee
+odm/bin/tee-supplicant
+odm/etc/init/tee-supplicant.rc
+odm/lib64/libteecli.so
 
 # Media
 system_ext/lib64/libmmosal.so

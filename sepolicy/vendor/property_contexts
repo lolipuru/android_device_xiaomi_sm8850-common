@@ -1,6 +1,15 @@
 # Audio
 persist.vendor.audio.cloud u:object_r:vendor_audio_cloud_ctrl_mi_prop:s0
 
+# AVF
+ro.boot.tee_type                      u:object_r:vendor_mitee_prop:s0 exact string
+ro.vendor.mitee_support               u:object_r:vendor_mitee_prop:s0 exact string
+vendor.mitee_vm.boot_completed        u:object_r:vendor_mitee_prop:s0 exact string
+vendor.mitee_vm.rpmb_state            u:object_r:vendor_mitee_prop:s0 exact string
+vendor.teefs_state                    u:object_r:vendor_mitee_prop:s0 exact string
+vendor.qvirtmgr.oemvm.status          u:object_r:vendor_mi_qvirtmgr_prop:s0 exact string
+vendor.qvirtmgr.trustedvm.status      u:object_r:vendor_mi_qvirtmgr_prop:s0 exact string
+
 # Camera
 persist.vendor.cameraid.     u:object_r:vendor_camera_prop:s0
 persist.vendor.EnableP3ColorSpace u:object_r:vendor_camera_p3enable_prop:s0
@@ -163,6 +172,14 @@ vendor.video.mode.status u:object_r:vendor_displayfeature_prop:s0
 # Dolby
 persist.vendor.dolbyv. u:object_r:vendor_dolbyv_prop:s0
 vendor.dolbyv. u:object_r:vendor_dolbyv_prop:s0
+
+# Face
+persist.vendor.debug.miface.        u:object_r:vendor_miface_debug_prop:s0
+persist.vendor.miface.              u:object_r:vendor_miface_prop:s0
+ro.vendor.debug.miface.             u:object_r:vendor_miface_debug_prop:s0
+ro.vendor.miface.                   u:object_r:vendor_miface_prop:s0
+vendor.debug.miface.                u:object_r:vendor_miface_debug_prop:s0
+vendor.miface.                      u:object_r:vendor_miface_prop:s0
 
 # Fingerprint
 persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0

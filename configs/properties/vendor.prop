@@ -69,6 +69,10 @@ vendor.display.comp_mask=0
 vendor.qc2audio.per_frame.flac.dec.enabled=true
 vendor.qc2audio.suspend.enabled=true
 
+# AVF
+ro.vendor.qtvm.auto.start=oemvm
+vendor.xiaomi.oemvm.version=20250715
+
 # Bluetooth
 bluetooth.core.le_audio.codec_extension_aidl.enabled=false
 bluetooth.device.class_of_device=90,2,12
@@ -159,6 +163,9 @@ drm.service.enabled=true
 vendor.wv.oemcrypto.debug.enable_external_display_check=false
 vendor.wv.oemcrypto.debug.enable_hlos_data_path=true
 vendor.wv.oemcrypto.debug.enable_prov40=true
+
+# Face
+ro.vendor.miface.started=true
 
 # Fingerprint
 persist.vendor.fingerprint.type=udfps
