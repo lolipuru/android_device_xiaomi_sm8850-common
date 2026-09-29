@@ -27,12 +27,15 @@ class Devices : public IDumpable {
     void setNotificationState(const State& state);
 
   private:
-    bool setBreath(const std::string& color, uint8_t brightness, uint32_t riseMs,
-                   uint32_t onMs, uint32_t fallMs, uint32_t offMs);
+    bool setBreath(uint8_t brightness, uint32_t riseMs, uint32_t onMs,
+                   uint32_t fallMs, uint32_t offMs);
 
-    bool setSolid(const std::string& color, uint8_t brightness);
+    bool setSolid(uint8_t brightness);
+
+    void initVariantColor();
 
     std::string mBasePath = "/sys/class/leds/aw21024_led/";
+    std::string mVariantColor = "FF0000";
     // 0: off, 1: solid, 2: breath
     int mCurrentMode = 0;
     uint8_t mLastBrightness = 0xFF;

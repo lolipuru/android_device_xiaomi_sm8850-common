@@ -1,21 +1,47 @@
 #include <Devices.h>
 #include <Utils.h>
+#include <android-base/properties.h>
 #include <unistd.h>
 #include <algorithm>
-#include <iomanip>
 #include <sstream>
+#include <vector>
 
 namespace aidl::android::hardware::light {
 
 static constexpr uint32_t kMaxPeriodMs = 8300;
 static constexpr uint32_t kBreathPhaseMs = 510;
 
-Devices::Devices() = default;
+Devices::Devices() {
+    initVariantColor();
+}
+
+void Devices::initVariantColor() {
+    std::string hwversion = android::base::GetProperty("ro.boot.hwversion", "");
+    std::stringstream ss(hwversion);
+    std::string segment;
+    std::vector<std::string> tokens;
+
+    while (std::getline(ss, segment, '.')) {
+        tokens.push_back(segment);
+    }
+
+    // 9 = Black (Red Led, default color)
+    // 19 = Red  (White Led)
+    mVariantColor = "FF0000";
+
+    if (tokens.size() >= 2) {
+        int colorId = std::atoi(tokens[1].c_str());
+        if (colorId == 19) {
+            mVariantColor = "FFFFFF";
+        }
+    }
+}
+
 bool Devices::hasNotificationDevices() const {
     return access((mBasePath + "color").c_str(), W_OK) == 0;
 }
 
-bool Devices::setSolid(const std::string& color, uint8_t brightness) {
+bool Devices::setSolid(uint8_t brightness) {
     bool ok = true;
     if (mCurrentMode != 1) {
         if (mCurrentMode != 0) {
@@ -28,15 +54,12 @@ bool Devices::setSolid(const std::string& color, uint8_t brightness) {
         mCurrentMode = 1;
     }
 
-    ok &= writeToFile(mBasePath + "color", color);
-    for (int segment = 0; segment < 8; ++segment) {
-        ok &= writeToFile(mBasePath + "rgbcolor", std::to_string(segment) + " " + color);
-    }
+    ok &= writeToFile(mBasePath + "color", mVariantColor);
     ok &= writeToFile(mBasePath + "brightness", static_cast<int>(brightness));
     return ok;
 }
 
-bool Devices::setBreath(const std::string& color, uint8_t brightness, uint32_t riseMs,
+bool Devices::setBreath(uint8_t brightness, uint32_t riseMs,
                         uint32_t onMs, uint32_t fallMs, uint32_t offMs) {
     bool ok = true;
     if (mCurrentMode != 2) {
@@ -54,12 +77,9 @@ bool Devices::setBreath(const std::string& color, uint8_t brightness, uint32_t r
     period << std::min(riseMs, kMaxPeriodMs) << " " << std::min(onMs, kMaxPeriodMs) << " "
            << std::min(fallMs, kMaxPeriodMs) << " " << std::min(offMs, kMaxPeriodMs);
 
-    ok &= writeToFile(mBasePath + "color", color);
-    for (int segment = 0; segment < 8; ++segment) {
-        ok &= writeToFile(mBasePath + "rgbcolor", std::to_string(segment) + " " + color);
-    }
-    ok &= writeToFile(mBasePath + "period", period.str());
     ok &= writeToFile(mBasePath + "repeat", 1);
+    ok &= writeToFile(mBasePath + "period", period.str());
+    ok &= writeToFile(mBasePath + "color", mVariantColor);
     ok &= writeToFile(mBasePath + "brightness", static_cast<int>(brightness));
     return ok;
 }
@@ -71,11 +91,6 @@ void Devices::setNotificationState(const State& state) {
         mCurrentMode = 0;
         return;
     }
-
-    const uint32_t rgb = (static_cast<uint32_t>(state.color.red) << 16) |
-                         (static_cast<uint32_t>(state.color.green) << 8) | state.color.blue;
-    std::ostringstream color;
-    color << std::uppercase << std::hex << std::setw(6) << std::setfill('0') << rgb;
 
     uint8_t brightness = state.color.brightness ? state.color.brightness : mLastBrightness;
     mLastBrightness = brightness;
@@ -103,15 +118,15 @@ void Devices::setNotificationState(const State& state) {
             fallMs = kBreathPhaseMs;
             offMs = kBreathPhaseMs;
         }
-        setBreath(color.str(), brightness, riseMs, onMs, fallMs, offMs);
+        setBreath(brightness, riseMs, onMs, fallMs, offMs);
     } else {
-        setSolid(color.str(), brightness);
+        setSolid(brightness);
     }
 }
 
 void Devices::dump(int fd) const {
-    dprintf(fd, "AW21024 path: %s, available: %d, currentMode: %d, lastBrightness: %u\n",
-            mBasePath.c_str(), hasNotificationDevices(), mCurrentMode, mLastBrightness);
+    dprintf(fd, "AW21024 path: %s, available: %d, variantColor: %s, currentMode: %d, lastBrightness: %u\n",
+            mBasePath.c_str(), hasNotificationDevices(), mVariantColor.c_str(), mCurrentMode, mLastBrightness);
 }
 
 }  // namespace aidl::android::hardware::light

@@ -11,6 +11,8 @@ on early-boot
     chmod 0664 /sys/class/leds/aw21024_led/repeat
     chown system system /sys/class/leds/aw21024_led/run
     chmod 0664 /sys/class/leds/aw21024_led/run
+    chown system system /sys/class/leds/aw21024_led/brightness
+    chmod 0664 /sys/class/leds/aw21024_led/brightness
     chown system system /sys/class/leds/aw21024_led/effect
     chmod 0664 /sys/class/leds/aw21024_led/effect
 
