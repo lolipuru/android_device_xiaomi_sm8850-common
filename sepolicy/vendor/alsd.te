@@ -9,3 +9,4 @@ binder_call(alsd, vendor_hal_citsensorservice_xiaomi_default)
 allow alsd vendor_hal_citsensorservice_xiaomi_service:service_manager find;
 allow alsd sysfs:dir search;
 allow alsd vendor_sysfs_graphics:file r_file_perms;
+allow alsd vendor_sysfs_graphics:dir r_dir_perms;
