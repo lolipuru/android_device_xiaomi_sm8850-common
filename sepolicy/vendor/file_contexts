@@ -22,6 +22,9 @@
 /(odm|vendor/odm|vendor|system/vendor)/bin/hw/misensor_camera u:object_r:vendor_hal_misensor_camera_default_exec:s0
 /(vendor|odm)/lib(64)?/libanc_single_bokeh\.so           u:object_r:same_process_hal_file:s0
 /(vendor|odm)/lib(64)?/libmiphone_capture_bokeh\.so      u:object_r:same_process_hal_file:s0
+/(vendor|odm)/lib(64)?/libSNPE\.so                       u:object_r:same_process_hal_file:s0
+/(vendor|odm)/lib(64)?/libSnpeHtpV81Stub\.so             u:object_r:same_process_hal_file:s0
+/(vendor|odm)/lib(64)?/rfsa/adsp/libSnpeHtpV81Skel\.so   u:object_r:same_process_hal_file:s0
 /data/vendor/aon(/.*)? u:object_r:vendor_aon_vendor_data_file:s0
 /dev/camlog u:object_r:camlog_device:s0
 /dev/miev u:object_r:vendor_miev_device:s0
@@ -29,6 +32,7 @@
 /odm/lib(64)?/libmialgo_utils\.so                        u:object_r:same_process_hal_file:s0
 /odm/lib(64)?/libmiocr\.so                               u:object_r:same_process_hal_file:s0
 /odm/lib(64)?/libxmi_slow_motion_mein\.so                u:object_r:same_process_hal_file:s0
+/odm/lib64/libcamxexternalformatutils\.so u:object_r:same_process_hal_file:s0
 /vendor/data/model/seg_quantized\.serialized\.8850\.aimet\.pertensor_512_cls3\.minn    u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libc\+\+_shared\.so                     u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libcalculator\.so                       u:object_r:same_process_hal_file:s0
@@ -41,13 +45,10 @@
 /vendor/lib(64)?/libQnnHtpV81Stub\.so                    u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libQnnSystem\.so                        u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libSEGModel\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libSNPE\.so                             u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libSnpeHta\.so                          u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libSnpeHtpPrepare\.so                   u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libSnpeHtpV81CalculatorStub\.so         u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libSnpeHtpV81Stub\.so                   u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/rfsa/adsp/libCalculator_skel\.so        u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/rfsa/adsp/libSnpeHtpV81Skel\.so         u:object_r:same_process_hal_file:s0
 /vendor/lib/rfsa/adsp/libQnnHtpV81Skel\.so               u:object_r:same_process_hal_file:s0
 
 # CitSensor
@@ -75,6 +76,9 @@
 /dev/xiaomi-fp    u:object_r:vendor_fingerprint_device:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.xiaomi              u:object_r:hal_fingerprint_default_exec:s0
 
+# GNSS
+/(odm|vendor/odm)/bin/hw/android\.hardware\.gnss-aidl-service-qti    u:object_r:vendor_hal_gnss_qti_exec:s0
+
 # HypSys
 /vendor/bin/hw/xiaomi\.system\.hypsys\.common-service    u:object_r:hal_hypsys_vendor_exec:s0
 
@@ -95,6 +99,7 @@
 
 # NFC
 /(odm|vendor/odm)/bin/hw/android\.hardware\.nqnfc-service\.nxp               u:object_r:hal_nfc_default_exec:s0
+/(odm|vendor/odm)/bin/hw/android\.hardware\.nfc-service-st                   u:object_r:hal_nfc_default_exec:s0
 
 # Perf
 /sys/kernel/reserve_pool(/.*)? u:object_r:vendor_sysfs_perf:s0

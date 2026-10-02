@@ -8,6 +8,7 @@ ro.charger.enable_suspend=1
 persist.vendor.cne.feature=1
 
 # Media
+debug.stagefright.c2-poolmask=2424832
 media.aac_51_output_enabled=true
 ro.media.xml_variant.profiles=_canoe_v2
 vendor.mm.enable.qcom_parser=16777215
