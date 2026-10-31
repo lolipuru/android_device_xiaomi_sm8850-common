@@ -82,7 +82,6 @@ blob_fixups: blob_fixups_user_type = {
     'system_ext/etc/init/qspa_system.rc': blob_fixup()
         .regex_replace(r'\$\{ro\.boot\.vendor\.qspa:-default\}', 'default'),
     (
-        'odm/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl',
         'odm/lib64/hw/displayfeature.default.so',
         'odm/lib64/libmiXmlParser.so',
         'vendor/bin/hw/audiohalservice.qti',
@@ -116,7 +115,6 @@ blob_fixups: blob_fixups_user_type = {
      ): blob_fixup()
         .replace_needed('android.hardware.sensors-V2-ndk.so','android.hardware.sensors-V3-ndk.so'),
      (
-       'odm/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl',
        'vendor/lib64/libdolbyui.so',
      ): blob_fixup()
         .replace_needed('android.hardware.graphics.common-V6-ndk.so','android.hardware.graphics.common-V7-ndk.so'),
