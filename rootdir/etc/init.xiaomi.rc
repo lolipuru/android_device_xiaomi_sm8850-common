@@ -40,3 +40,6 @@ on post-fs-data
 on property:sys.boot_completed=1
     # Set thermal mode to mgame
     write /sys/devices/virtual/thermal/thermal_message/sconfig 19
+
+on shutdown
+    write /sys/class/xm_power/charger/charger_partition/charger_partition_poweroffmode 1
