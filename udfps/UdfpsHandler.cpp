@@ -11,11 +11,6 @@
 #include <android-base/unique_fd.h>
 
 #include <fstream>
-#include <thread>
-#include <fcntl.h>
-#include <poll.h>
-#include <unistd.h>
-#include <linux/uinput.h>
 
 #include "UdfpsHandler.h"
 
@@ -45,59 +40,6 @@ class XiaomiSM8850UdfpsHander : public UdfpsHandler {
   public:
     void init(fingerprint_device_t* device) {
         mDevice = device;
-
-        mUinputFd.reset(open("/dev/uinput", O_WRONLY | O_NONBLOCK));
-        if (mUinputFd.get() < 0) {
-            LOG(ERROR) << "Failed to open uinput";
-        } else {
-            ioctl(mUinputFd.get(), UI_SET_EVBIT, EV_KEY);
-            ioctl(mUinputFd.get(), UI_SET_KEYBIT, KEY_WAKEUP);
-            struct uinput_setup usetup = { .id = { .bustype = BUS_VIRTUAL }, .name = "UdfpsWakeup" };
-            ioctl(mUinputFd.get(), UI_DEV_SETUP, &usetup);
-            ioctl(mUinputFd.get(), UI_DEV_CREATE);
-        }
-
-        std::thread([this]() {
-            android::base::unique_fd fd(open(FOD_STATUS_PATH, O_RDONLY));
-            
-            if (fd.get() < 0) {
-                LOG(ERROR) << "Failed to open FOD status path";
-                return; 
-            }
-
-            struct pollfd pfd;
-            pfd.fd = fd.get();
-            pfd.events = POLLPRI | POLLERR;
-
-            char buf;
-            bool lastState = false;
-
-            lseek(fd.get(), 0, SEEK_SET);
-            read(fd.get(), &buf, 1);
-
-            while (true) {
-                int ret = poll(&pfd, 1, -1);
-                
-                if (ret < 0) {
-                    LOG(ERROR) << "Error polling FOD status";
-                    std::this_thread::sleep_for(std::chrono::seconds(1));
-                    continue;
-                }
-
-                if (pfd.revents & (POLLPRI | POLLERR)) {
-                    lseek(fd.get(), 0, SEEK_SET);
-                    
-                    if (read(fd.get(), &buf, 1) > 0) {
-                        bool pressed = (buf == '1');
-
-                        if (pressed != lastState) {
-                            lastState = pressed;
-                            setFingerDown(pressed);
-                        }
-                    }
-                }
-            }
-        }).detach();
     }
 
     void onFingerDown(uint32_t /*x*/, uint32_t /*y*/, float /*minor*/, float /*major*/) {
@@ -115,8 +57,7 @@ class XiaomiSM8850UdfpsHander : public UdfpsHandler {
         if (result != FINGERPRINT_ACQUIRED_VENDOR) {
             setFingerDown(false);
             if (static_cast<AcquiredInfo>(result) == AcquiredInfo::GOOD) {
-                setFodStatus(FOD_STATUS_OFF);                
-                wakeDevice();
+                setFodStatus(FOD_STATUS_OFF);
             }
         } else if (vendorCode == 201 || vendorCode == 202) {
             /*
@@ -140,7 +81,6 @@ class XiaomiSM8850UdfpsHander : public UdfpsHandler {
 
   private:
     fingerprint_device_t* mDevice;
-    android::base::unique_fd mUinputFd;
 
     void setFodStatus(int value) {
         set(FOD_STATUS_PATH, value);
@@ -149,16 +89,6 @@ class XiaomiSM8850UdfpsHander : public UdfpsHandler {
     void setFingerDown(bool pressed) {
         if (pressed) {
             mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS, PARAM_FOD_PRESSED);
-        }
-    }
-
-    void wakeDevice() {
-        if (mUinputFd.get() >= 0) {
-            struct input_event ev[3] = {};
-            ev[0].type = EV_KEY; ev[0].code = KEY_WAKEUP; ev[0].value = 1;
-            ev[1].type = EV_KEY; ev[1].code = KEY_WAKEUP; ev[1].value = 0;
-            ev[2].type = EV_SYN; ev[2].code = SYN_REPORT; ev[2].value = 0;
-            write(mUinputFd.get(), ev, sizeof(ev));
         }
     }
 };
