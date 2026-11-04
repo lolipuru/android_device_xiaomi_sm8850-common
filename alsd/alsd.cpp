@@ -32,6 +32,7 @@ constexpr char kBacklightPanel1[] =
 
 constexpr long kPeriodMs = 300;
 constexpr long kIdlePeriodMs = 1500;
+constexpr int32_t kCwbCaptureRequest = 1;
 
 void sleepMs(long ms) {
     timespec ts = {ms / 1000, (ms % 1000) * 1000000};
@@ -76,9 +77,6 @@ int main() {
 
         ALOGI("Connected to citsensorservice (fd0: %d, fd1: %d)", fd0, fd1);
 
-        int lastDbv = -1;
-        int lastDisplayId = -1;
-
         while (true) {
             int dbv0 = readBacklightFd(fd0);
             int dbv1 = readBacklightFd(fd1);
@@ -95,26 +93,12 @@ int main() {
             }
 
             if (activeDbv <= 0) {
-                lastDbv = activeDbv;
                 sleepMs(kIdlePeriodMs);
                 continue;
             }
 
-            // Update brightness when brightness or active display changes
-            if (activeDbv != lastDbv || activeDisplayId != lastDisplayId) {
-                int32_t ret = 0;
-                auto status = service->setBrightness(activeDbv, &ret);
-                if (!status.isOk()) {
-                    ALOGW("citsensorservice died on setBrightness: %s",
-                          status.getDescription().c_str());
-                    break;
-                }
-                lastDbv = activeDbv;
-                lastDisplayId = activeDisplayId;
-            }
-
             int32_t ret = 0;
-            auto status = service->triggerCwbDump(activeDisplayId, 0, true, &ret);
+            auto status = service->triggerCwbDump(activeDisplayId, kCwbCaptureRequest, true, &ret);
             if (!status.isOk()) {
                 ALOGW("citsensorservice died on triggerCwbDump: %s",
                     status.getDescription().c_str());
