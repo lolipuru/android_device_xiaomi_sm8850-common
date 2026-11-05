@@ -1,2 +1,9 @@
 allow hal_power_default touchfeature_device:chr_file rw_file_perms;
 allow hal_power_default touchfeature_device:file { getattr map read };
+allow hal_power_default proc_sched:file rw_file_perms;
+allow hal_power_default sysfs_devices_system_cpu:file rw_file_perms;
+allow hal_power_default vendor_sysfs_msm_perf:file rw_file_perms;
+allow hal_power_default vendor_latency_device:chr_file read;
+allow hal_power_default cgroup:file read;
+allow hal_power_default proc_walt:dir r_dir_perms;
+allow hal_power_default proc_walt:file rw_file_perms;
