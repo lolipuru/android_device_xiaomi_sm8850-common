@@ -65,6 +65,7 @@ allow hal_camera_default vendor_sysfs_camera_xiaomi:file rw_file_perms;
 allow hal_camera_default vendor_persist_sensors_file:dir search;
 allow hal_camera_default vendor_persist_sensors_file:file rw_file_perms;
 allow hal_camera_default vendor_miev_device:chr_file { write open };
+allow hal_camera_default cgroup:file read;
 
 dontaudit hal_camera_default fs_bpf:dir search;
 dontaudit hal_camera_default fs_bpf_vendor:dir search;

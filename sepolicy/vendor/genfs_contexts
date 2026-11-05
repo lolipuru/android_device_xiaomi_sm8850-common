@@ -36,8 +36,8 @@ genfscon sysfs /devices/virtual/xm_power/mca_event u:object_r:vendor_sysfs_xm_po
 genfscon sysfs /devices/virtual/xm_power/typec u:object_r:vendor_sysfs_xm_power:s0
 genfscon sysfs /devices/virtual/xm_power/wireless_master u:object_r:vendor_sysfs_xm_power:s0
 
-# Powerstats
-genfscon sysfs /devices/virtual/powercap/qpt u:object_r:vendor_sysfs_powerstats:s0
+# Perf
+genfscon proc /sys/walt u:object_r:proc_sched:s0
 
 # Sensors
 genfscon sysfs /devices/virtual/touch/touch_dev/gesture_double_tap_enabled u:object_r:vendor_sysfs_sensors:s0
@@ -93,6 +93,7 @@ genfscon sysfs /devices/virtual/touch/touch_dev/update_rawdata u:object_r:sysfs_
 genfscon sysfs /devices/platform/soc/19c0000.qcom,qupv3_3_geni_se/1990000.qcom,qup_uart/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/1ac0000.qcom,qupv3_4_geni_se/1a88000.i2c/i2c-21/21-0028/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/1ac0000.qcom,qupv3_4_geni_se/1a8c000.i2c/i2c-22/22-0033/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/1ac0000.qcom,qupv3_4_geni_se/1a80000.spi/spi_master/spi19/spi19.0/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/88c000.i2c/i2c-11/11-0055/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/88c000.i2c/i2c-11/11-006f/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a90000.spi/spi_master/spi4/spi4.0/wakeup u:object_r:sysfs_wakeup:s0
