@@ -2,6 +2,7 @@
 
 Currently supported devices
 - Xiaomi 17 (Pudding)
+- Xiaomi 17 Pro (Pandora)
 - Xiaomi 17 Pro Max (Popsicle)
 - Redmi K90 Pro Max / Poco F8 Ultra (Myron)
 - Redmi K100 Pro (Athens)
