@@ -1171,15 +1171,6 @@ vendor/lib64/libsvswcpu.so
 vendor/lib64/qti.video.utils.videobufferlayout.so
 vendor/lib64/vendor.xiaomi.hardware.mediaeventgatherservice-V1-ndk.so
 
-# MemHal
-vendor/bin/hw/vendor.qti.MemHal-service
-vendor/etc/init/vendor.qti.MemHal-service.rc
-vendor/etc/vintf/manifest/vendor.qti.MemHal.xml
-vendor/lib64/libmemgen.so
-vendor/lib64/libmemhalutils.so
-vendor/lib64/libqti-MemHal-client.so
-vendor/lib64/vendor.qti.MemHal-V1-ndk.so
-
 # Mlipay
 odm/bin/mlipayd
 odm/etc/init/vendor.xiaomi.hardware.mlipay-service.rc
@@ -1409,8 +1400,6 @@ vendor/lib64/vendor.qti.qspmhal-V1-ndk.so
 
 # QTI service tracker
 vendor/bin/hw/vendor.qti.hardware.servicetrackeraidl-service
-vendor/bin/qt-service
-vendor/etc/init/init.qt-service.rc
 vendor/etc/init/vendor.qti.hardware.servicetrackeraidl-service.rc
 vendor/etc/vintf/manifest/vendor.qti.hardware.servicetrackeraidl-service.xml
 vendor/lib64/hw/vendor.qti.hardware.servicetrackeraidl-impl.so
