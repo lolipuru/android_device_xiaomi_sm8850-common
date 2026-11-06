@@ -13,7 +13,6 @@ cc_binary {
     srcs: [
         "main.cpp",
         "notifiers/AodNotifier.cpp",
-        "notifiers/NonUiNotifier.cpp",
         "SensorNotifier.cpp",
         "utils/SensorNotifierUtils.cpp",
     ],
