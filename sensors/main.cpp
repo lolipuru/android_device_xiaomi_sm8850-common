@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 The LineageOS Project
+ * Copyright (C) 2024-2026 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -7,14 +7,20 @@
 #define LOG_TAG "SensorNotifier"
 
 #include <android-base/logging.h>
-#include <android-base/properties.h>
+#include <android/binder_manager.h>
+#include <android/binder_process.h>
 
 #include "notifiers/AodNotifier.h"
 
 int main() {
-    sp<ISensorManager> manager = ISensorManager::getService();
-    if (manager == nullptr) {
-        LOG(ERROR) << "failed to get ISensorManager";
+    ABinderProcess_setThreadPoolMaxThreadCount(1);
+    ABinderProcess_startThreadPool();
+
+    const std::string instance = std::string(ISensorManager::descriptor) + "/default";
+    auto manager = ISensorManager::fromBinder(
+            ndk::SpAIBinder(AServiceManager_waitForService(instance.c_str())));
+    if (!manager) {
+        LOG(ERROR) << "failed to get " << instance;
         return EXIT_FAILURE;
     }
 
@@ -24,11 +30,8 @@ int main() {
         notifier->activate();
     }
 
-    while (true) {
-        // Sleep to keep the notifiers alive
-        std::this_thread::sleep_for(std::chrono::seconds(10));
-    }
+    ABinderProcess_joinThreadPool();
 
     // Should never reach this
-    return EXIT_SUCCESS;
+    return EXIT_FAILURE;
 }

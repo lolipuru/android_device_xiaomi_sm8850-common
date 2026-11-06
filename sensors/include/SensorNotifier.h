@@ -1,37 +1,44 @@
 /*
- * Copyright (C) 2024 The LineageOS Project
+ * Copyright (C) 2024-2026 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
 
 #pragma once
 
-#include <android/frameworks/sensorservice/1.0/ISensorManager.h>
+#include <aidl/android/frameworks/sensorservice/BnEventQueueCallback.h>
+#include <aidl/android/frameworks/sensorservice/ISensorManager.h>
+
+#include <atomic>
+#include <string>
 #include <thread>
 
-using android::sp;
-using android::frameworks::sensorservice::V1_0::IEventQueue;
-using android::frameworks::sensorservice::V1_0::IEventQueueCallback;
-using android::frameworks::sensorservice::V1_0::ISensorManager;
-using android::frameworks::sensorservice::V1_0::Result;
+using ::aidl::android::frameworks::sensorservice::BnEventQueueCallback;
+using ::aidl::android::frameworks::sensorservice::IEventQueue;
+using ::aidl::android::frameworks::sensorservice::IEventQueueCallback;
+using ::aidl::android::frameworks::sensorservice::ISensorManager;
+using ::aidl::android::hardware::sensors::Event;
 
 class SensorNotifier {
   public:
-    SensorNotifier(sp<ISensorManager> manager);
+    SensorNotifier(std::shared_ptr<ISensorManager> manager);
     virtual ~SensorNotifier();
 
     void activate();
-    void deactivate();
 
   protected:
-    Result initializeSensorQueue(std::string typeAsString, bool wakeup, sp<IEventQueueCallback>);
+    bool initializeSensorQueue(const std::string& typeAsString, bool wakeup,
+                               std::shared_ptr<IEventQueueCallback> callback);
+    void enableSensor(bool enable);
     virtual void notify() = 0;
 
-    sp<IEventQueue> mQueue;
+    std::shared_ptr<IEventQueue> mQueue;
     int32_t mSensorHandle = -1;
-    bool mActive = false;
 
   private:
-    sp<ISensorManager> mManager;
+    std::shared_ptr<ISensorManager> mManager;
     std::thread mThread;
+    bool mEnabled = false;
 };
+
+float getEventValue(const Event& e);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 The LineageOS Project
+ * Copyright (C) 2024-2026 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -10,118 +10,151 @@
 
 #include <android-base/logging.h>
 #include <android-base/unique_fd.h>
-#include <display/drm/mi_disp.h>
+
+#include <fcntl.h>
+#include <linux/types.h>
 #include <poll.h>
 #include <sys/ioctl.h>
-
-#include "SensorNotifierUtils.h"
-
-static const std::string kDispFeatureDevice = "/dev/mi_display/disp_feature";
-
-using android::hardware::Return;
-using android::hardware::Void;
-using android::hardware::sensors::V1_0::Event;
+#include <unistd.h>
 
 namespace {
 
-void requestDozeBrightness(int fd, __u32 doze_brightness) {
-    disp_doze_brightness_req req;
-    req.base.flag = 0;
-    req.base.disp_id = MI_DISP_PRIMARY;
-    req.doze_brightness = doze_brightness;
-    ioctl(fd, MI_DISP_IOCTL_SET_DOZE_BRIGHTNESS, &req);
+constexpr const char* kDispFeatureDevice = "/dev/mi_display/disp_feature";
+
+constexpr __u32 MI_DISP_PRIMARY = 0;
+constexpr __u32 MI_DISP_EVENT_POWER = 0;
+
+enum : __u32 {
+    DOZE_TO_NORMAL = 0,
+    DOZE_BRIGHTNESS_HBM = 1,
+    DOZE_BRIGHTNESS_LBM = 2,
+};
+
+enum : __u8 {
+    MI_DISP_POWER_ON = 0,
+    MI_DISP_POWER_LP1 = 1,
+    MI_DISP_POWER_LP2 = 2,
+};
+
+struct disp_base {
+    __u32 flag;
+    __u32 disp_id;
+};
+
+struct disp_doze_brightness_req {
+    struct disp_base base;
+    __u32 doze_brightness;
+};
+
+struct disp_event_req {
+    struct disp_base base;
+    __u32 type;
+};
+
+struct disp_event {
+    __s32 disp_id;
+    __u32 type;
+    __u32 length;
+};
+
+#define MI_DISP_IOCTL_SET_DOZE_BRIGHTNESS _IOW('D', 0x02, struct disp_doze_brightness_req)
+#define MI_DISP_IOCTL_REGISTER_EVENT _IOW('D', 0x07, struct disp_event_req)
+
+void requestDozeBrightness(int fd, __u32 dozeBrightness) {
+    disp_doze_brightness_req req = {
+            .base = {.flag = 0, .disp_id = MI_DISP_PRIMARY},
+            .doze_brightness = dozeBrightness,
+    };
+    if (ioctl(fd, MI_DISP_IOCTL_SET_DOZE_BRIGHTNESS, &req) < 0) {
+        PLOG(ERROR) << "failed to set doze brightness " << dozeBrightness;
+    }
 }
 
-class AodSensorCallback : public IEventQueueCallback {
+class AodSensorCallback : public BnEventQueueCallback {
   public:
     AodSensorCallback() {
-        disp_fd_ = android::base::unique_fd(open(kDispFeatureDevice.c_str(), O_RDWR));
-        if (disp_fd_.get() == -1) {
-            LOG(ERROR) << "failed to open " << kDispFeatureDevice;
+        mDispFd.reset(open(kDispFeatureDevice, O_RDWR | O_CLOEXEC));
+        if (mDispFd.get() < 0) {
+            PLOG(ERROR) << "failed to open " << kDispFeatureDevice;
         }
     }
 
-    Return<void> onEvent(const Event& e) {
-        requestDozeBrightness(disp_fd_.get(), (e.u.scalar == 3 || e.u.scalar == 5)
-                                                      ? DOZE_BRIGHTNESS_LBM
-                                                      : DOZE_BRIGHTNESS_HBM);
-        return Void();
+    ndk::ScopedAStatus onEvent(const Event& e) override {
+        int value = static_cast<int>(getEventValue(e));
+        LOG(DEBUG) << "aod: " << value;
+        requestDozeBrightness(mDispFd.get(), (value == 3 || value == 5) ? DOZE_BRIGHTNESS_LBM
+                                                                        : DOZE_BRIGHTNESS_HBM);
+        return ndk::ScopedAStatus::ok();
     }
 
   private:
-    android::base::unique_fd disp_fd_;
+    android::base::unique_fd mDispFd;
 };
 
 }  // namespace
 
-AodNotifier::AodNotifier(sp<ISensorManager> manager) : SensorNotifier(manager) {
-    initializeSensorQueue("xiaomi.sensor.aod", true, new AodSensorCallback());
-}
-
-AodNotifier::~AodNotifier() {
-    deactivate();
+AodNotifier::AodNotifier(std::shared_ptr<ISensorManager> manager) : SensorNotifier(manager) {
+    initializeSensorQueue("xiaomi.sensor.aod", true, ndk::SharedRefBase::make<AodSensorCallback>());
 }
 
 void AodNotifier::notify() {
-    Result res;
-
-    android::base::unique_fd disp_fd_ =
-            android::base::unique_fd(open(kDispFeatureDevice.c_str(), O_RDWR));
-    if (disp_fd_.get() == -1) {
-        LOG(ERROR) << "failed to open " << kDispFeatureDevice;
+    android::base::unique_fd dispFd(open(kDispFeatureDevice, O_RDWR | O_CLOEXEC));
+    if (dispFd.get() < 0) {
+        PLOG(ERROR) << "failed to open " << kDispFeatureDevice;
+        return;
     }
 
-    // Register for power events
-    disp_event_req req;
-    req.base.flag = 0;
-    req.base.disp_id = MI_DISP_PRIMARY;
-    req.type = MI_DISP_EVENT_POWER;
-    ioctl(disp_fd_.get(), MI_DISP_IOCTL_REGISTER_EVENT, &req);
-
-    struct pollfd dispEventPoll = {
-            .fd = disp_fd_.get(),
-            .events = POLLIN,
-            .revents = 0,
+    disp_event_req req = {
+            .base = {.flag = 0, .disp_id = MI_DISP_PRIMARY},
+            .type = MI_DISP_EVENT_POWER,
     };
+    if (ioctl(dispFd.get(), MI_DISP_IOCTL_REGISTER_EVENT, &req) < 0) {
+        PLOG(ERROR) << "failed to register power event";
+        return;
+    }
 
-    while (mActive) {
-        int rc = poll(&dispEventPoll, 1, -1);
-        if (rc < 0) {
-            LOG(ERROR) << "failed to poll " << kDispFeatureDevice << ", err: " << rc;
+    pollfd pfd = {.fd = dispFd.get(), .events = POLLIN};
+    while (true) {
+        if (poll(&pfd, 1, -1) < 0) {
+            if (errno == EINTR) continue;
+            PLOG(ERROR) << "failed to poll " << kDispFeatureDevice;
+            return;
+        }
+
+        alignas(disp_event) char buf[512];
+        ssize_t len = read(dispFd.get(), buf, sizeof(buf));
+        if (len < 0) {
+            PLOG(ERROR) << "failed to read display event";
             continue;
         }
 
-        struct disp_event_resp* response = parseDispEvent(disp_fd_.get());
-        if (response == nullptr) {
+        int power = -1;
+        for (ssize_t off = 0; off + static_cast<ssize_t>(sizeof(disp_event)) <= len;) {
+            auto* event = reinterpret_cast<disp_event*>(buf + off);
+            if (event->length <= sizeof(disp_event) || off + event->length > len) {
+                LOG(ERROR) << "malformed display event, length: " << event->length;
+                break;
+            }
+            if (event->type == MI_DISP_EVENT_POWER) {
+                power = static_cast<__u8>(buf[off + sizeof(disp_event)]);
+            }
+            off += event->length;
+        }
+        if (power < 0) {
             continue;
         }
 
-        if (response->base.type != MI_DISP_EVENT_POWER) {
-            LOG(ERROR) << "unexpected display event: " << response->base.type;
-            continue;
-        }
-
-        int value = response->data[0];
-        LOG(VERBOSE) << "received data: " << std::bitset<8>(value);
-
-        switch (response->data[0]) {
+        LOG(DEBUG) << "display power: " << power;
+        switch (power) {
             case MI_DISP_POWER_LP1:
-                FALLTHROUGH_INTENDED;
             case MI_DISP_POWER_LP2:
-                res = mQueue->enableSensor(mSensorHandle, 20000 /* sample period */,
-                                           0 /* latency */);
-                if (res != Result::OK) {
-                    LOG(ERROR) << "failed to enable sensor";
-                }
+                enableSensor(true);
                 break;
             case MI_DISP_POWER_ON:
-                requestDozeBrightness(disp_fd_.get(), DOZE_TO_NORMAL);
-                FALLTHROUGH_INTENDED;
+                requestDozeBrightness(dispFd.get(), DOZE_TO_NORMAL);
+                [[fallthrough]];
             default:
-                res = mQueue->disableSensor(mSensorHandle);
-                if (res != Result::OK) {
-                    LOG(DEBUG) << "failed to disable sensor";
-                }
+                enableSensor(false);
                 break;
         }
     }
