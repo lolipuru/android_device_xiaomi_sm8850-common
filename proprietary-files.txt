@@ -1644,7 +1644,6 @@ vendor/etc/init/init.vendor.sensors.rc
 vendor/etc/init/vendor.qti.hardware.sensorscalibrate-service.rc
 vendor/etc/init/vendor.sensors.sscrpcd.rc
 vendor/etc/sensors/config/chre_dynamic_sensors.json
-vendor/etc/sensors/hals.conf
 vendor/etc/sensors/sns_reg_config
 vendor/etc/vintf/manifest/vendor.qti.hardware.sensorscalibrate.xml
 vendor/lib64/hw/sensors.dynamic_sensor_hal.so
