@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2024 The LineageOS Project
+// Copyright (C) 2024-2026 The LineageOS Project
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -7,27 +7,16 @@
 cc_binary {
     name: "sensor-notifier",
     vendor: true,
-
     init_rc: ["sensor-notifier.rc"],
-
     srcs: [
+        "AodNotifier.cpp",
         "main.cpp",
-        "notifiers/AodNotifier.cpp",
-        "notifiers/NonUiNotifier.cpp",
         "SensorNotifier.cpp",
-        "utils/SensorNotifierUtils.cpp",
     ],
-
-    local_include_dirs: ["include"],
-
     shared_libs: [
+        "android.frameworks.sensorservice-V1-ndk",
+        "android.hardware.sensors-V3-ndk",
         "libbase",
-        "libhidlbase",
-        "libutils",
-        "android.frameworks.sensorservice@1.0",
-    ],
-
-    header_libs: [
-        "generated_kernel_headers",
+        "libbinder_ndk",
     ],
 }

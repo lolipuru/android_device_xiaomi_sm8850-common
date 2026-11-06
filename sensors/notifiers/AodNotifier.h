@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 The LineageOS Project
+ * Copyright (C) 2024-2026 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -10,9 +10,8 @@
 
 class AodNotifier : public SensorNotifier {
   public:
-    AodNotifier(sp<ISensorManager> manager);
-    ~AodNotifier();
+    AodNotifier(std::shared_ptr<ISensorManager> manager);
 
   protected:
-    void notify();
+    void notify() override;
 };

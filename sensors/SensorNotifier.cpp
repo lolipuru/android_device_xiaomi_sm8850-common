@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 The LineageOS Project
+ * Copyright (C) 2024-2026 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -10,77 +10,76 @@
 
 #include <android-base/logging.h>
 
-using android::hardware::sensors::V1_0::SensorFlagBits;
-using android::hardware::sensors::V1_0::SensorInfo;
+using ::aidl::android::hardware::sensors::SensorInfo;
 
-SensorNotifier::SensorNotifier(sp<ISensorManager> manager) : mManager(manager) {}
+SensorNotifier::SensorNotifier(std::shared_ptr<ISensorManager> manager) : mManager(manager) {}
 
 SensorNotifier::~SensorNotifier() {
-    if (mQueue != nullptr) {
-        /*
-         * Free the event queue.
-         * kernel calls decStrong() on server side implementation of IEventQueue,
-         * hence resources (including the callback) are freed as well.
-         */
-        mQueue = nullptr;
+    if (mThread.joinable()) {
+        mThread.detach();
     }
 }
 
-Result SensorNotifier::initializeSensorQueue(std::string typeAsString, bool wakeup,
-                                             sp<IEventQueueCallback> callback) {
-    Result res;
+bool SensorNotifier::initializeSensorQueue(const std::string& typeAsString, bool wakeup,
+                                           std::shared_ptr<IEventQueueCallback> callback) {
     std::vector<SensorInfo> sensorList;
+    auto ret = mManager->getSensorList(&sensorList);
+    if (!ret.isOk()) {
+        LOG(ERROR) << "failed to get sensor list: " << ret.getDescription();
+        return false;
+    }
 
-    mManager->getSensorList([&sensorList, &res](const auto& l, auto r) {
-        sensorList = l;
-        res = r;
+    auto it = std::find_if(sensorList.begin(), sensorList.end(), [&](const SensorInfo& sensor) {
+        return sensor.typeAsString == typeAsString &&
+               ((sensor.flags & SensorInfo::SENSOR_FLAG_BITS_WAKE_UP) != 0) == wakeup;
     });
-    if (res != Result::OK) {
-        LOG(ERROR) << "failed to get sensors list";
-        return res;
+    if (it == sensorList.end()) {
+        LOG(ERROR) << "failed to find " << typeAsString << " sensor with wake-up: " << wakeup;
+        return false;
     }
-    auto it = std::find_if(sensorList.begin(), sensorList.end(),
-                           [this, &typeAsString, &wakeup](const SensorInfo& sensor) {
-                               return (sensor.typeAsString == typeAsString) &&
-                                      ((sensor.flags & SensorFlagBits::WAKE_UP) == wakeup);
-                           });
+    mSensorHandle = it->sensorHandle;
 
-    if (it != sensorList.end()) {
-        mSensorHandle = it->sensorHandle;
-    } else {
-        LOG(ERROR) << "failed to get " << typeAsString << " sensor with wake-up: " << wakeup;
-        return Result::NOT_EXIST;
+    ret = mManager->createEventQueue(callback, &mQueue);
+    if (!ret.isOk() || !mQueue) {
+        LOG(ERROR) << "failed to create event queue: " << ret.getDescription();
+        mQueue = nullptr;
+        return false;
     }
 
-    mManager->createEventQueue(callback, [this, &res](const auto& q, auto r) {
-        this->mQueue = q;
-        res = r;
-    });
-    if (res != Result::OK) {
-        LOG(ERROR) << "failed to create event queue";
-        return res;
+    return true;
+}
+
+void SensorNotifier::enableSensor(bool enable) {
+    if (!mQueue || enable == mEnabled) {
+        return;
     }
 
-    return Result::OK;
+    auto ret = enable ? mQueue->enableSensor(mSensorHandle, 20000 /* sample period */,
+                                             0 /* latency */)
+                      : mQueue->disableSensor(mSensorHandle);
+    if (!ret.isOk()) {
+        LOG(ERROR) << "failed to " << (enable ? "enable" : "disable")
+                   << " sensor: " << ret.getDescription();
+        return;
+    }
+    mEnabled = enable;
 }
 
 void SensorNotifier::activate() {
-    if (mActive) {
+    if (!mQueue || mThread.joinable()) {
         return;
     }
-    mActive = true;
     mThread = std::thread(&SensorNotifier::notify, this);
 }
 
-void SensorNotifier::deactivate() {
-    if (!mActive) {
-        return;
-    }
-    mActive = false;
-    if (mThread.joinable()) {
-        mThread.join();
-    }
-    if (mQueue != nullptr) {
-        mQueue->disableSensor(mSensorHandle);
+float getEventValue(const Event& e) {
+    switch (e.payload.getTag()) {
+        case Event::EventPayload::Tag::scalar:
+            return e.payload.get<Event::EventPayload::Tag::scalar>();
+        case Event::EventPayload::Tag::data:
+            return e.payload.get<Event::EventPayload::Tag::data>().values[0];
+        default:
+            LOG(WARNING) << "unexpected event payload: " << e.payload.toString();
+            return 0;
     }
 }
