@@ -342,7 +342,6 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    alsd \
     android.hardware.sensors-service.xiaomi-multihal \
     sensors.xiaomi.v2 \
     sensor-notifier
