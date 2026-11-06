@@ -1,7 +1,0 @@
-# Copyright (C) 2026 Alex Zorzi <info@alexzorzi.it>
-# SPDX-License-Identifier: Apache-2.0
-
-service vendor.alsd /vendor/bin/hw/alsd
-    class hal
-    user system
-    group system graphics

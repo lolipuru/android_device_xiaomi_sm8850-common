@@ -122,7 +122,6 @@
 /vendor/bin/qrtr-lookup   u:object_r:vendor_qrtr_lookup_exec:s0
 
 # Sensors
-/(vendor|system/vendor)/bin/hw/alsd    u:object_r:alsd_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.sensors-service\.xiaomi-multihal     u:object_r:hal_sensors_default_exec:s0
 
 # SLA

@@ -343,7 +343,6 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    alsd \
     android.hardware.sensors-service.xiaomi-multihal
 
 PRODUCT_COPY_FILES += \
