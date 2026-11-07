@@ -218,7 +218,7 @@ PRODUCT_COPY_FILES += \
 # Kernel
 ifeq ($(TARGET_OPT_IN_OSS_KERNEL),true)
 PRODUCT_COPY_FILES += \
-    kernel/platform/kernel-6.12/vendor/xiaomi/kernel/modules-lists/modules.systemdlkm_blocklist.msm.canoe:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
+    kernel/platform/kernel-6.12/vendor/xiaomi/sm8850/modules-lists/modules.systemdlkm_blocklist.msm.canoe:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
 endif
 
 # Keylayout
